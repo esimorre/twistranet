@@ -1,5 +1,7 @@
 from django.core.cache import cache
 from django.conf import settings
+from django.utils.html import *
+
 
 def _get_site_name_or_baseline(return_baseline = False):
     """
@@ -130,4 +132,70 @@ def _check_file_size(data):
     data.seek(0, os.SEEK_SET )
     if file_size<=max_size:
         return 1
-    return 0  
+    return 0
+
+# XXX mut be removed when django ticket https://code.djangoproject.com/ticket/9655
+# will be resolved
+def twist_urlize(text, trim_url_limit=None, nofollow=False, autoescape=False):
+    """
+    BASED on django.utils.html urlize
+    but also fix the bug  https://code.djangoproject.com/ticket/9655
+    
+    Original text :
+    
+    Converts any URLs in text into clickable links.
+
+    Works on http://, https://, www. links and links ending in .org, .net or
+    .com. Links can have trailing punctuation (periods, commas, close-parens)
+    and leading punctuation (opening parens) and it'll still do the right
+    thing.
+
+    If trim_url_limit is not None, the URLs in link text longer than this limit
+    will truncated to trim_url_limit-3 characters and appended with an elipsis.
+
+    If nofollow is True, the URLs in link text will get a rel="nofollow"
+    attribute.
+
+    If autoescape is True, the link text and URLs will get autoescaped.
+    """
+    trim_url = lambda x, limit=trim_url_limit: limit is not None and (len(x) > limit and ('%s...' % x[:max(0, limit - 3)])) or x
+    safe_input = isinstance(text, SafeData)
+    words = word_split_re.split(force_unicode(text))
+    nofollow_attr = nofollow and ' rel="nofollow"' or ''
+    for i, word in enumerate(words):
+        match = None
+        if '.' in word or '@' in word or ':' in word:
+            match = punctuation_re.match(word)
+        if match:
+            lead, middle, trail = match.groups()
+            # Make URL we want to point to.
+            url = None
+            if middle.startswith('http://') or middle.startswith('https://'):
+                # XXX : The fix is here
+                url = urlquote(middle, safe='/%&=:;#?+*')
+            elif middle.startswith('www.') or ('@' not in middle and \
+                    middle and middle[0] in string.ascii_letters + string.digits and \
+                    (middle.endswith('.org') or middle.endswith('.net') or middle.endswith('.com'))):
+                url = urlquote('http://%s' % middle, safe='/&=:;#?+*')
+            elif '@' in middle and not ':' in middle and simple_email_re.match(middle):
+                url = 'mailto:%s' % middle
+                nofollow_attr = ''
+            # Make link.
+            if url:
+                trimmed = trim_url(middle)
+                if autoescape and not safe_input:
+                    lead, trail = escape(lead), escape(trail)
+                    url, trimmed = escape(url), escape(trimmed)
+                middle = '<a href="%s"%s>%s</a>' % (url, nofollow_attr, trimmed)
+                words[i] = mark_safe('%s%s%s' % (lead, middle, trail))
+            else:
+                if safe_input:
+                    words[i] = mark_safe(word)
+                elif autoescape:
+                    words[i] = escape(word)
+        elif safe_input:
+            words[i] = mark_safe(word)
+        elif autoescape:
+            words[i] = escape(word)
+    return u''.join(words)
+twist_urlize = allow_lazy(twist_urlize, unicode)

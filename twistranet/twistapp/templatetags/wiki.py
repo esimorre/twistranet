@@ -10,7 +10,10 @@ Basically, any 'wikied' page can contain, at your choice:
 import re
 from django import template
 from django.template.defaultfilters import stringfilter
-from django.utils.html import conditional_escape, urlize
+from django.utils.html import conditional_escape
+# XXX mut be changed when django ticket https://code.djangoproject.com/ticket/9655
+# will be resolved
+from twistranet.twistapp.lib.utils import twist_urlize
 from django.utils.safestring import SafeData, mark_safe
 from django.core.urlresolvers import reverse
 from twistranet.twistapp.lib import slugify
@@ -109,7 +112,7 @@ def escape_wiki(text, lookup = False, autoescape=None):
         # clean escape
         text = conditional_escape(text)
         # urlize the links
-        text = urlize(text)
+        text = twist_urlize(text,trim_url_limit=50)
         # replace linebreaks
         text = text.replace('\n', '<br />')
 
