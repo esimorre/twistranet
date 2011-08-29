@@ -8,6 +8,8 @@ from django.utils.safestring import mark_safe
 from django.contrib import messages
 from django.conf import settings
 
+DEFAULT_EXTERNAL_LINKS_NEW_WIN = True
+
 def js_vars(request):
     """
     return javascript dynamic stuff
@@ -19,11 +21,16 @@ def js_vars(request):
 var home_url = '%(home_url)s';
 var jq = jQuery;
 var reloadtimeout=%(rtimeout)s;
+var external_links_new_win=%(external_links_new_win)s;
     """
-
+    if getattr(settings, 'EXTERNAL_LINKS_NEW_WIN', DEFAULT_EXTERNAL_LINKS_NEW_WIN):
+        external_links_new_win = 'true'
+    else:
+        external_links_new_win = 'false'
     js_vars = dict(
         home_url = reverse("twistranet_home"),
-        rtimeout = getattr(settings, 'WALLS_RELOAD_TIMEOUT', 0)
+        rtimeout = getattr(settings, 'WALLS_RELOAD_TIMEOUT', 0),
+        external_links_new_win = external_links_new_win,
     )
 
     response = HttpResponse( src %js_vars,

@@ -32,6 +32,7 @@ loadLastComment = function(comments_container, html) {
     jq('form:first', comments_container).before(html);
     window.setTimeout(function() {jq('.comment-description-field', comments_container).trigger('focusout')}, 3);
     twistranet.showCommentsActions();
+    comments_container.initExternalLinks();
 }
 
 loadComments = function(ID, html) {
@@ -43,6 +44,7 @@ loadComments = function(ID, html) {
     commentOnSubmit(comments_container);
     commentOnFocus(comments_container);
     jq('.comment-description-field', comments_container).focus();
+    comments_container.initExternalLinks();
 }
 
 commentOnFocus = function(comments_container) {

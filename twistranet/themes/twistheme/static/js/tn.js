@@ -366,6 +366,7 @@ reloadWall = function() {
                     // for now we just remove all possibles messages (for deletion, etc ...)
                     // but we could want to add a new message here ?
                     jq("#tn-message").remove();
+                    jq("#content").initExternalLinks();
                 });
             },
             error: function(jqXHR, textStatus, errorThrown) {
@@ -404,6 +405,7 @@ var twistranet = {
         this.formInputsHints();
         this.loadUploaders();
         this.initWysiwygBrowser();
+        $('body').initExternalLinks();
     },
     setBrowserProperties : function(e) {
         if (! this.browser_width){
@@ -447,6 +449,15 @@ var twistranet = {
                         block.remove();
                     }
                 });
+            },
+            initExternalLinks: function() {
+                if (external_links_new_win) {
+                    jq("a[href^='http:']", this).each(function(){
+                        if(jq(this).attr("href").search(location.host) == -1){
+                            jq(this).attr("target", "_blank");
+                        }
+                    });
+                }
             }
         });
     },
@@ -488,6 +499,7 @@ var twistranet = {
                 success: function(htmlcontent){
                     bottomBar.replaceWith(htmlcontent);
                     setFirstAndLast('#content', '.post');
+                    jq("#content").initExternalLinks();
                 }
             });
             return false;
@@ -527,6 +539,7 @@ var twistranet = {
                         self.formInputsHints();
                         self.loadUploaders();
                         tnResourceWidget();
+                        jq("#content").initExternalLinks();
                     });
                 }
             });
