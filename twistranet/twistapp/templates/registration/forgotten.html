@@ -1,6 +1,15 @@
 {% extends "base.html" %}
 {% load i18n %}
 
+{% block local_css %}
+  <style>
+    .login .form-row label {
+      width: 340px;
+      white-space: normal;
+      line-height: 1em;
+    }
+  </style>
+{% endblock %}
 {% block title %}{% endblock %}
 {% block topbar %}{% endblock %}
 {% block menu_items %}{% endblock %}
@@ -16,8 +25,8 @@
 	  <form id="login-form" action="" method="post" class="enableAutoFocus">
 	      {% csrf_token %}
 	    <p>
-	        {% blocktrans %}Enter your email address to reset your password.<br />
-	        You will recieve an email with instruction on how to do it.{% endblocktrans %}
+	        {% blocktrans %}Enter your email address or username to reset your password.<br />
+	        You will receive an email with instruction on how to do it.{% endblocktrans %}
 	    </p>
         {% for field in form %}
             {% if not field.is_hidden %}

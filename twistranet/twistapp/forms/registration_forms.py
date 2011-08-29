@@ -10,8 +10,8 @@ class ForgottenPasswordForm(forms.Form):
     User Creation form.
     We add a few things to make this shiny.
     """
-    email = forms.EmailField(
-        label = _("Enter your email address:"),
+    email = forms.CharField(
+        label = _("Enter your email address or username:"),
         max_length = 40,
     )
     
@@ -22,14 +22,21 @@ class ForgottenPasswordForm(forms.Form):
         email = self.cleaned_data["email"]
         
         # Check that user exists
-        try:
-            user = User.objects.get(email = email)
-        except User.DoesNotExist:
-            raise forms.ValidationError(_("This email is not registerd."))
-            
+        # email could be username or user email
+        # we always return the user email to the view
+        if "@" in email:
+            try:
+                user = User.objects.get(email = email)
+            except User.DoesNotExist:
+                raise forms.ValidationError(_("This email is not registered."))
+        else:
+            try:
+                user = User.objects.get(username = email)
+            except User.DoesNotExist:
+                raise forms.ValidationError(_("This username is not registered."))
         # Check that password is valid
         if user.password == UNUSABLE_PASSWORD:
-            raise forms.ValidationError(_("Can't retrieve password for this email. Ask your system administrator."))
+            raise forms.ValidationError(_("Can't retrieve password for this user or email. Ask your system administrator."))
         return user.email
 
     class Meta:
