@@ -1,5 +1,16 @@
+1.1.2, 2011/08/30
+=================
+
+- Fix ticket https://github.com/numericube/twistranet/issues/7
+
+- Fix ticket https://github.com/numericube/twistranet/issues/28
+
+- Open external links in new window, new local setting true/false added
+  first part of ticket https://github.com/numericube/twistranet/issues/23
+
 1.1.1, 2011/07/29
 ==================
+
 - fix sorl thumbnail error with CMJK images
   https://github.com/numericube/twistranet/issues/22
 
