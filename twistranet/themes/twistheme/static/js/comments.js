@@ -50,6 +50,7 @@ loadComments = function(ID, html) {
 commentOnFocus = function(comments_container) {
     jq('.comment-description-field', comments_container).val(base_comment_message);
     jq('.comment-description-field', comments_container).focusin(function(){
+        jq('#reload_wall').val('');
         comment = jq(this).val();
         if (comment==base_comment_message) jq(this).val('');
         jq(this).addClass('comment-active');
@@ -62,6 +63,7 @@ commentOnFocus = function(comments_container) {
         if (!comment) {
             jq(this).removeClass('comment-active');
             jq(this).val(base_comment_message);
+            jq('#reload_wall').val('1');
             jq('input[type=submit]', comments_container).hide();
         }
     });

@@ -345,7 +345,7 @@ addInlineMessage = function (msg, msgtype) {
 
 
 reloadWall = function() {
-    if (!reset_reload_timeout) {
+    if (jq('#reload_wall').val()=='1'  && !reset_reload_timeout) {
         jq('#content').waitLoading('top:150px;left:47%;');
         jq.ajax({
             type: "GET",
