@@ -379,7 +379,7 @@ reloadWall = function() {
     }
     else {
         reset_reload_timeout=0;
-        if (reloadtimeout && jq('#reload_wall').val()=='1') window.setTimeout(reloadWall,reloadtimeout);
+        if (reloadtimeout) window.setTimeout(reloadWall,reloadtimeout);
     }
 }
 // main class
