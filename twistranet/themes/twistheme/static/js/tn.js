@@ -361,7 +361,7 @@ reloadWall = function() {
                 jq(document).ready(function() {
                     jq('#content').stopWaitLoading();
                     jq('.fieldset-inline-form:last').after(htmlcontent);
-                    if (reloadtimeout && jq('#reload_wall').val()=='1') window.setTimeout(reloadWall,reloadtimeout);
+                    if (reloadtimeout) window.setTimeout(reloadWall,reloadtimeout);
                     setFirstAndLast('#content', '.post');
                     // for now we just remove all possibles messages (for deletion, etc ...)
                     // but we could want to add a new message here ?
