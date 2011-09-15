@@ -4,6 +4,9 @@
 - fix https://github.com/numericube/twistranet/issues/27
  (submit comment button disappears after a wall reload)
 
+- fix https://github.com/numericube/twistranet/issues/31
+  (stop walls reload when a comment form is not empty)
+
 1.1.2, 2011/08/30
 =================
 
