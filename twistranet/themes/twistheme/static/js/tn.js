@@ -367,6 +367,7 @@ reloadWall = function() {
                     // but we could want to add a new message here ?
                     jq("#tn-message").remove();
                     jq("#content").initExternalLinks();
+                    twistranet.initCommentForms();
                 });
             },
             error: function(jqXHR, textStatus, errorThrown) {
@@ -500,6 +501,7 @@ var twistranet = {
                     bottomBar.replaceWith(htmlcontent);
                     setFirstAndLast('#content', '.post');
                     jq("#content").initExternalLinks();
+                    self.initCommentForms();
                 }
             });
             return false;
@@ -540,6 +542,7 @@ var twistranet = {
                         self.loadUploaders();
                         tnResourceWidget();
                         jq("#content").initExternalLinks();
+                        self.initCommentForms();
                     });
                 }
             });
@@ -595,11 +598,11 @@ var twistranet = {
     },
     showCommentsActions: function(e){
         /* show content actions on post mouseover */
-        jq('.comment').bind('mouseenter', function(){
+        jq('.comment').live('mouseenter', function(){
           jq(this).addClass('activecomment');
           jq(this).parents('.post').removeClass('activepost');
         });
-        jq('.comment').bind('mouseleave', function(){
+        jq('.comment').live('mouseleave', function(){
           jq(this).removeClass('activecomment'); 
           jq(this).parents('.post').addClass('activepost');
         });                                          
