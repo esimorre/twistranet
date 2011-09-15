@@ -37,13 +37,18 @@ loadLastComment = function(comments_container, html) {
 
 loadComments = function(ID, html) {
     comments_container = jq("#view_comments"+ID);
+    prev_comment = jq('.comment-description-field', comments_container).val();
     comments_container.empty();
     comments_container.prepend(html);
     jq("#view"+ID).parent().css('visibility','hidden');
     twistranet.showCommentsActions();
     commentOnSubmit(comments_container);
     commentOnFocus(comments_container);
-    jq('.comment-description-field', comments_container).focus();
+    comment_field = jq('.comment-description-field', comments_container);
+    /* XXX TODO JMG : load only the comments, no more the comment form here
+       need some template + js refactor */
+    comment_field.val(prev_comment);
+    comment_field.focus();
     comments_container.initExternalLinks();
 }
 
