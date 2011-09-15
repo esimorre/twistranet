@@ -9,6 +9,9 @@
 
 - Do not erase comment text field when clicking on "show all comments"
 
+- Now the number of comments is more visible
+  see ticket https://github.com/numericube/twistranet/issues/24
+
 1.1.2, 2011/08/30
 =================
 

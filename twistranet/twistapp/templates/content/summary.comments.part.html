@@ -12,7 +12,7 @@
       {% endif %}
   {% endif %}
     >
-    <span class="comment_count">{{comment_count}}</span>
+    <span class="comment_count">{% blocktrans %}<strong>{{comment_count}}</strong> comments{% endblocktrans %}</span>
     <span class="comment_ui" id="view{{ content.id }}">
         <a  id="{{ content.id }}"
             class="view_comments"
