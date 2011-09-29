@@ -3,6 +3,9 @@ Trunk
 
 - minor fix for mixed emails : the good mime type is multipart/related
 
+- important fix : The send images as attachments was broken
+  attachments were sent but the html tag was always containing inline images
+
 1.1.3, 2011/09/15
 =================
 

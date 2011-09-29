@@ -214,7 +214,6 @@ class MailHandler(NotifierHandler):
             # Prepare messages
             msg = EmailMultiAlternatives(subject, text_content, from_email, [ to ], )
             if html_content:
-                msg.attach_alternative(html_content, "text/html")
                 if getattr(settings, 'SEND_EMAIL_IMAGES_AS_ATTACHMENTS', DEFAULT_SEND_EMAIL_IMAGES_AS_ATTACHMENTS):
                     # we replace img links by img Mime Images
                     mimeimages = []
@@ -240,6 +239,7 @@ class MailHandler(NotifierHandler):
 
                     img_url_expr = re.compile('(?P<attribute>src)\s*=\s*([\'\"])(%s)?(?P<urlpath>[^\"\']*)\\2' %domain, re.IGNORECASE)
                     html_content = img_url_expr.sub(replace_img_url, html_content)
+                    msg.attach_alternative(html_content, "text/html")
                     if mimeimages:
                         msg.mixed_subtype = 'related'
                         for fkey, name, is_static in mimeimages:
@@ -255,6 +255,9 @@ class MailHandler(NotifierHandler):
                             msgImage.add_header('Content-ID', '<%s>' % name)
                             msgImage.add_header('Content-Disposition', 'inline')
                             msg.attach(msgImage)
+                # just inline images
+                else:
+                    msg.attach_alternative(html_content, "text/html")
             # Send safely
             try:
                 log.debug("Sending mail: '%s' from '%s' to '%s'" % (subject, from_email, to))
