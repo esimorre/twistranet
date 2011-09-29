@@ -241,7 +241,7 @@ class MailHandler(NotifierHandler):
                     img_url_expr = re.compile('(?P<attribute>src)\s*=\s*([\'\"])(%s)?(?P<urlpath>[^\"\']*)\\2' %domain, re.IGNORECASE)
                     html_content = img_url_expr.sub(replace_img_url, html_content)
                     if mimeimages:
-                        msg.mixed_subtype = 'relative'
+                        msg.mixed_subtype = 'related'
                         for fkey, name, is_static in mimeimages:
                             if cache_mimeimages.has_key(fkey):
                                 msgImage = cache_mimeimages[fkey]
