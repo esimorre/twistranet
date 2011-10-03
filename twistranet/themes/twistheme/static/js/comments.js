@@ -32,22 +32,30 @@ loadLastComment = function(comments_container, html) {
     jq('form:first', comments_container).before(html);
     window.setTimeout(function() {jq('.comment-description-field', comments_container).trigger('focusout')}, 3);
     twistranet.showCommentsActions();
+    comments_container.initExternalLinks();
 }
 
 loadComments = function(ID, html) {
     comments_container = jq("#view_comments"+ID);
+    prev_comment = jq('.comment-description-field', comments_container).val();
     comments_container.empty();
     comments_container.prepend(html);
     jq("#view"+ID).parent().css('visibility','hidden');
     twistranet.showCommentsActions();
     commentOnSubmit(comments_container);
     commentOnFocus(comments_container);
-    jq('.comment-description-field', comments_container).focus();
+    comment_field = jq('.comment-description-field', comments_container);
+    /* XXX TODO JMG : load only the comments, no more the comment form here
+       need some template + js refactor */
+    comment_field.val(prev_comment);
+    comment_field.focus();
+    comments_container.initExternalLinks();
 }
 
 commentOnFocus = function(comments_container) {
     jq('.comment-description-field', comments_container).val(base_comment_message);
     jq('.comment-description-field', comments_container).focusin(function(){
+        jq('#reload_wall').val('');
         comment = jq(this).val();
         if (comment==base_comment_message) jq(this).val('');
         jq(this).addClass('comment-active');
@@ -60,6 +68,7 @@ commentOnFocus = function(comments_container) {
         if (!comment) {
             jq(this).removeClass('comment-active');
             jq(this).val(base_comment_message);
+            jq('#reload_wall').val('1');
             jq('input[type=submit]', comments_container).hide();
         }
     });

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: twistranet\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-07 14:29+0200\n"
+"POT-Creation-Date: 2011-09-15 17:52+0200\n"
 "PO-Revision-Date: 2011-05-06 13:52+0200\n"
 "Last-Translator: Jean-mat Grimaldi <jmgrimaldi@numericube.com>\n"
 "Language-Team: Numericube\n"
@@ -87,15 +87,15 @@ msgstr "Ce message sera joint à votre invitation."
 msgid "Enter your current password"
 msgstr "Entrez votre mot de passe actuel"
 
-#: .\forms\account_forms.py:101 .\forms\registration_forms.py:43
+#: .\forms\account_forms.py:101 .\forms\registration_forms.py:50
 msgid "Enter your new password"
 msgstr "Entrez votre nouveau mot de passe"
 
-#: .\forms\account_forms.py:105 .\forms\registration_forms.py:47
+#: .\forms\account_forms.py:105 .\forms\registration_forms.py:54
 msgid "Confirm your new password"
 msgstr "Confirmez votre nouveau mot de passe"
 
-#: .\forms\account_forms.py:106 .\forms\registration_forms.py:48
+#: .\forms\account_forms.py:106 .\forms\registration_forms.py:55
 msgid "Enter the same password as above, for verification."
 msgstr "Confirmez votre mot de passe."
 
@@ -103,7 +103,7 @@ msgstr "Confirmez votre mot de passe."
 msgid "Invalid password."
 msgstr "Mot de passe incorrect."
 
-#: .\forms\account_forms.py:127 .\forms\registration_forms.py:56
+#: .\forms\account_forms.py:127 .\forms\registration_forms.py:63
 msgid "The two password fields didn't match."
 msgstr "Le mot de passe et la confirmation ne concordent pas."
 
@@ -173,15 +173,21 @@ msgid "Enter a valid Path."
 msgstr "Entrez un chemin valide."
 
 #: .\forms\registration_forms.py:14
-msgid "Enter your email address:"
-msgstr "Entrez votre adresse email :"
+msgid "Enter your email address or username:"
+msgstr "Entrez votre adresse email ou nom d'utilisateur :"
 
-#: .\forms\registration_forms.py:28
-msgid "This email is not registerd."
+#: .\forms\registration_forms.py:31
+msgid "This email is not registered."
 msgstr "Aucun utilisateur n'existe avec cet email."
 
-#: .\forms\registration_forms.py:32
-msgid "Can't retrieve password for this email. Ask your system administrator."
+#: .\forms\registration_forms.py:36
+msgid "This username is not registered."
+msgstr "Ce nom d'utilisateur n'existe pas."
+
+#: .\forms\registration_forms.py:39
+msgid ""
+"Can't retrieve password for this user or email. Ask your system "
+"administrator."
 msgstr ""
 "Le mot de passe de cet utilisateur ne peut pas être récupéré. Prenez contact "
 "avec votre administrateur système."
@@ -207,7 +213,7 @@ msgid "Uploaded file:"
 msgstr "Fichier envoyé :"
 
 #: .\templates\form.fieldset.part.html.py:22
-#: .\templates\admin\menu_builder_form.html.py:147
+#: .\templates\admin\menu_builder_form.html.py:150
 #: .\templates\community\edit.html.py:30 .\templates\content\edit.html.py:39
 #: .\templates\registration\join.html.py:47
 #: .\templates\resource\edit.html.py:40 .\views\admin_views.py:20
@@ -215,18 +221,18 @@ msgid "Save"
 msgstr "Valider"
 
 #: .\templates\form.fieldset.part.html.py:23
-#: .\templates\admin\menu_builder_form.html.py:148
+#: .\templates\admin\menu_builder_form.html.py:151
 #: .\templates\community\edit.html.py:31 .\templates\content\edit.html.py:40
 #: .\templates\registration\join.html.py:48
 #: .\templates\resource\edit.html.py:41
 msgid "Undo"
 msgstr "Annuler"
 
-#: .\templates\wall.content.part.html.py:9
+#: .\templates\wall.content.part.html.py:10
 msgid "Older posts"
 msgstr "Publications plus anciennes"
 
-#: .\templates\wall.content.part.html.py:13
+#: .\templates\wall.content.part.html.py:15
 msgid "Very beginning of this wall's history."
 msgstr "Tout début de l'historique de ce mur."
 
@@ -312,20 +318,20 @@ msgstr "Utilisateurs et communautés"
 msgid "Toolbox"
 msgstr "Boîte à outils"
 
-#: .\templates\admin\menu_builder_form.html.py:30
+#: .\templates\admin\menu_builder_form.html.py:31
 msgid "Add custom link"
 msgstr "Ajouter un lien personnalisé."
 
-#: .\templates\admin\menu_builder_form.html.py:51
-#: .\templates\admin\menu_builder_form.html.py:78
+#: .\templates\admin\menu_builder_form.html.py:52
+#: .\templates\admin\menu_builder_form.html.py:79
 msgid "Add to menu"
 msgstr "Ajouter au menu"
 
-#: .\templates\admin\menu_builder_form.html.py:57
+#: .\templates\admin\menu_builder_form.html.py:58
 msgid "Add internal view"
 msgstr "Ajouter une vue interne."
 
-#: .\templates\admin\menu_builder_form.html.py:84
+#: .\templates\admin\menu_builder_form.html.py:85
 msgid "Add community"
 msgstr "Ajouter une communauté"
 
@@ -474,12 +480,17 @@ msgstr "Il y a %(date)s"
 msgid "Scope:"
 msgstr "Visibilité :"
 
-#: .\templates\content\summary.comments.part.html.py:20
+#: .\templates\content\summary.comments.part.html.py:16
+#, python-format
+msgid "<strong>%(comment_count)s</strong> comments"
+msgstr "<strong>%(comment_count)s</strong> commentaires"
+
+#: .\templates\content\summary.comments.part.html.py:21
 #, python-format
 msgid "View all %(comment_count)s comments"
 msgstr "Voir les %(comment_count)s commentaires"
 
-#: .\templates\content\summary.comments.part.html.py:23
+#: .\templates\content\summary.comments.part.html.py:24
 msgid "Comment"
 msgstr "Commenter"
 
@@ -759,7 +770,7 @@ msgstr ""
 
 #: .\templates\email\request_add_to_network.html.py:12
 #: .\templates\email\request_add_to_network.txt.py:8
-#: .\templates\email\reset_password.html.py:10
+#: .\templates\email\reset_password.html.py:12
 #, python-format
 msgid "Dear %(target_title)s,"
 msgstr "Cher, Chère %(target_title)s,"
@@ -801,12 +812,12 @@ msgstr ""
 "demande."
 
 #: .\templates\email\reset_password.html.py:4
-#: .\templates\email\reset_password.html.py:8
+#: .\templates\email\reset_password.html.py:10
 #: .\templates\email\reset_password.txt.py:3
 msgid "Password reset"
 msgstr "Réinitialiser le mot de passe"
 
-#: .\templates\email\reset_password.html.py:13
+#: .\templates\email\reset_password.html.py:15
 #, python-format
 msgid ""
 "You requested a password reset for <a href=\"%(domain)s\">%(site_name)s</a>."
@@ -814,7 +825,12 @@ msgstr ""
 "Vous avez demandé à réinitialiser votre mot de passe pour <a href=\"%(domain)"
 "s\">%(site_name)s</a>."
 
-#: .\templates\email\reset_password.html.py:16
+#: .\templates\email\reset_password.html.py:18
+#, python-format
+msgid "Your username is <strong>%(username)s</strong>."
+msgstr "Votre nom d'utilisateur est <strong>%(username)s</strong>"
+
+#: .\templates\email\reset_password.html.py:21
 #, python-format
 msgid ""
 "To reset your password, just <a href=\"%(domain)s%(reset_password_uri)s"
@@ -823,22 +839,23 @@ msgstr ""
 "Pour réinitialiser votre mot de passe, <a href=\"%(domain)s%"
 "(reset_password_uri)s\">cliquez sur ce lien</a>."
 
-#: .\templates\email\reset_password.html.py:19
+#: .\templates\email\reset_password.html.py:24
 msgid ""
 "If you think you recieved this email by mistake, you can safely ignore it."
 msgstr ""
 "Si vous pensez avoir reçu cet email par erreur, vous pouvez simplement "
 "l'ignorer."
 
-#: .\templates\registration\forgotten.html.py:19
+#: .\templates\registration\forgotten.html.py:28
 msgid ""
-"Enter your email address to reset your password.<br />\n"
-"\t        You will recieve an email with instruction on how to do it."
+"Enter your email address or username to reset your password.<br />\n"
+"\t        You will receive an email with instruction on how to do it."
 msgstr ""
-"Entrez votre adresse email pour réinitialiser votre mot de passe.<br />\n"
+"Entrez votre adresse email ou nom d'utilisateur pour réinitialiser votre mot "
+"de passe.<br />\n"
 "\t        Vous recevrez un email contenant les instructions pour le changer."
 
-#: .\templates\registration\forgotten.html.py:38
+#: .\templates\registration\forgotten.html.py:47
 #: .\templates\registration\reset_password.html.py:34
 msgid "Reset password"
 msgstr "Réinitialiser le mot de passe"
@@ -1231,20 +1248,20 @@ msgstr "Constructeur de menus"
 msgid "Menu has been saved."
 msgstr "Le menu a été sauvegardé."
 
-#: .\views\common_views.py:43
+#: .\views\common_views.py:52
 msgid "Error"
 msgstr "Erreur"
 
-#: .\views\common_views.py:44
+#: .\views\common_views.py:53
 #, python-format
 msgid "<p>Error on page <strong>%(requested_url)s</strong></p>"
 msgstr "<p>Erreur sur la page <strong>%(requested_url)s</strong></p>"
 
-#: .\views\common_views.py:61
+#: .\views\common_views.py:70
 msgid "Sorry, page not found"
 msgstr "Désolé, page introuvable."
 
-#: .\views\common_views.py:63
+#: .\views\common_views.py:72
 #, python-format
 msgid ""
 "<p>\n"
@@ -1263,11 +1280,11 @@ msgstr ""
 "  Veuillez contacter votre administrateur pour en savoir plus.\n"
 "</p>"
 
-#: .\views\common_views.py:76
+#: .\views\common_views.py:85
 msgid "Internal error"
 msgstr "Erreur interne"
 
-#: .\views\common_views.py:78
+#: .\views\common_views.py:87
 #, python-format
 msgid ""
 "<p>\n"
@@ -1518,8 +1535,8 @@ msgstr "Taille moyenne"
 msgid "Full size"
 msgstr "Grande taille"
 
-msgid "No contents are available."
-msgstr "Pas de contenu."
+#~ msgid "No contents are available."
+#~ msgstr "Pas de contenu."
 
-msgid "File"
-msgstr "Fichier"
+#~ msgid "File"
+#~ msgstr "Fichier"

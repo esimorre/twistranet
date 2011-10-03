@@ -339,7 +339,7 @@ addInlineMessage = function (msg, msgtype) {
 
 
 reloadWall = function() {
-    if (!reset_reload_timeout) {
+    if (jq('#reload_wall').val()=='1'  && !reset_reload_timeout) {
         jq('#content').waitLoading('top:150px;left:47%;');
         jq.ajax({
             type: "GET",
@@ -355,11 +355,13 @@ reloadWall = function() {
                 jq(document).ready(function() {
                     jq('#content').stopWaitLoading();
                     jq('.fieldset-inline-form:last').after(htmlcontent);
-                    if (reloadtimeout && jq('#reload_wall').val()=='1') window.setTimeout(reloadWall,reloadtimeout);
+                    if (reloadtimeout) window.setTimeout(reloadWall,reloadtimeout);
                     setFirstAndLast('#content', '.post');
                     // for now we just remove all possibles messages (for deletion, etc ...)
                     // but we could want to add a new message here ?
                     jq("#tn-message").remove();
+                    jq("#content").initExternalLinks();
+                    twistranet.initCommentForms();
                 });
             },
             error: function(jqXHR, textStatus, errorThrown) {
@@ -371,7 +373,7 @@ reloadWall = function() {
     }
     else {
         reset_reload_timeout=0;
-        if (reloadtimeout && jq('#reload_wall').val()=='1') window.setTimeout(reloadWall,reloadtimeout);
+        if (reloadtimeout) window.setTimeout(reloadWall,reloadtimeout);
     }
 }
 // main class
@@ -398,6 +400,7 @@ var twistranet = {
         this.formInputsHints();
         this.loadUploaders();
         this.initWysiwygBrowser();
+        $('body').initExternalLinks();
     },
     setBrowserProperties : function(e) {
         if (! this.browser_width){
@@ -441,6 +444,15 @@ var twistranet = {
                         block.remove();
                     }
                 });
+            },
+            initExternalLinks: function() {
+                if (external_links_new_win) {
+                    jq("a[href^='http:']", this).each(function(){
+                        if(jq(this).attr("href").search(location.host) == -1){
+                            jq(this).attr("target", "_blank");
+                        }
+                    });
+                }
             }
         });
     },
@@ -482,6 +494,8 @@ var twistranet = {
                 success: function(htmlcontent){
                     bottomBar.replaceWith(htmlcontent);
                     setFirstAndLast('#content', '.post');
+                    jq("#content").initExternalLinks();
+                    self.initCommentForms();
                 }
             });
             return false;
@@ -521,6 +535,8 @@ var twistranet = {
                         self.formInputsHints();
                         self.loadUploaders();
                         tnResourceWidget();
+                        jq("#content").initExternalLinks();
+                        self.initCommentForms();
                     });
                 }
             });
@@ -576,11 +592,11 @@ var twistranet = {
     },
     showCommentsActions: function(e){
         /* show content actions on post mouseover */
-        jq('.comment').bind('mouseenter', function(){
+        jq('.comment').live('mouseenter', function(){
           jq(this).addClass('activecomment');
           jq(this).parents('.post').removeClass('activepost');
         });
-        jq('.comment').bind('mouseleave', function(){
+        jq('.comment').live('mouseleave', function(){
           jq(this).removeClass('activecomment'); 
           jq(this).parents('.post').addClass('activepost');
         });                                          

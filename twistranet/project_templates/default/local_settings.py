@@ -50,6 +50,8 @@ SEND_EMAIL_IMAGES_AS_ATTACHMENTS = True
 # Timeout for walls automatic reload in ms, 0 = no reload
 WALLS_RELOAD_TIMEOUT = 120000
 
+# Open external links in a new window
+EXTERNAL_LINKS_NEW_WIN = True
 #                                           #
 #               Hosting settings            #
 #                                           #
