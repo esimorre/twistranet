@@ -1,5 +1,5 @@
-Trunk
-=====
+1.1.4, 2011/10/04
+=================
 
 - minor fix for mixed emails : the good mime type is multipart/related
 
