@@ -19,6 +19,8 @@ def get_class(class_string):
         try:
             class_string = class_string.encode('ascii')
             mod_name, class_name = get_mod_func(class_string)
+            mod_name = mod_name.replace('compress.', 'twistranet.compress.')
+            
             if class_name != '':
                 class_string = getattr(__import__(mod_name, {}, {}, ['']), class_name)
         except (ImportError, AttributeError):
