@@ -263,7 +263,7 @@ COMPRESS_VERSION = True
 # but this could impact performances.
 # You could prefer using "python manage.py synccompress" to force new output
 # generation each time you change the files
-COMPRESS_AUTO = False
+COMPRESS_AUTO = True
 COMPRESS_CSS = {
     'twist_theme': {
         'source_filenames': ('css/reset.css',
