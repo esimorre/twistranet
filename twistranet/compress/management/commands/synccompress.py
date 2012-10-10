@@ -15,7 +15,7 @@ class Command(NoArgsCommand):
         force = options.get('force', False)
         verbosity = int(options.get('verbosity', 1))
 
-        from compress.utils import needs_update, filter_css, filter_js
+        from twistranet.compress.utils import needs_update, filter_css, filter_js
 
         for name, css in settings.COMPRESS_CSS.items():
             u, version = needs_update(css['output_filename'], 

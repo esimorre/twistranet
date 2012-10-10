@@ -1,7 +1,7 @@
 import os
 
-from compress.utils import get_output_filename, media_root
-from compress.versioning.base import VersioningBase
+from twistranet.compress.utils import get_output_filename, media_root
+from twistranet.compress.versioning.base import VersioningBase
 
 class MTimeVersioning(VersioningBase):
 

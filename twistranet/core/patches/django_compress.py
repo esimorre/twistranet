@@ -1,4 +1,4 @@
-from compress import utils
+from twistranet.compress import utils
 import os
 from django.conf import settings as django_settings
 from django.utils.http import urlquote

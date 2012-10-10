@@ -6,8 +6,8 @@ from django.conf import settings as django_settings
 from django.utils.http import urlquote
 from django.dispatch import dispatcher
 
-from compress.conf import settings
-from compress.signals import css_filtered, js_filtered
+from twistranet.compress.conf import settings
+from twistranet.compress.signals import css_filtered, js_filtered
 
 def get_class(class_string):
     """

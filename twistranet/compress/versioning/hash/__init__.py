@@ -2,9 +2,9 @@ import cStringIO
 from hashlib import md5, sha1
 import os
 
-from compress.conf import settings
-from compress.utils import concat, get_output_filename
-from compress.versioning.base import VersioningBase
+from twistranet.compress.conf import settings
+from twistranet.compress.utils import concat, get_output_filename
+from twistranet.compress.versioning.base import VersioningBase
 
 class HashVersioningBase(VersioningBase):
     def __init__(self, hash_method):

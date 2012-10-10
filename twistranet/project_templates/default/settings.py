@@ -209,12 +209,12 @@ _INSTALLED_APPS = (
     # 3rd party modules
     DEBUG and 'debug_toolbar' or None,
     'piston',
-    'compress',
     'tinymce',
     'sorl.thumbnail',
     'modeltranslation',
     
     # TwistraNet core stuff
+    'twistranet.compress',
     'twistranet.twistapp',
     'twistranet.search',
     
