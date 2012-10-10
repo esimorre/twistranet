@@ -39,7 +39,6 @@ setup(name = 'numericube-twistranet',
           'django-tinymce',
           'django-modeltranslation',
           'sorl-thumbnail',
-          'django-compress',
           # -*- Extra requirements: -*-
       ],
       entry_points = """
