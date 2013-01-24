@@ -64,7 +64,7 @@ To install the last Twistranet released version
 
     $ pip install numericube-twistranet
 
-.. note:: behind an http proxy you need to add an option to pip, exemple:: pip --proxy proxy-server:proxy-port install django-twistranet 
+.. note:: behind an http proxy you need to add an option to pip, exemple:: pip --proxy proxy-server:proxy-port install numericube-twistranet
 
 Or to install the devel version from github Twistranet public repository, open a command line
 
