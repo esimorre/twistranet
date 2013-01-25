@@ -1,6 +1,6 @@
-Unreleased
-==========
-* django 1.4 compliance in progress
+2.0.0
+======
+* Twistranet is now django 1.4.x compliant
 
 2.0-alpha, 2011/10/04
 =====================

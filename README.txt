@@ -70,7 +70,7 @@ To install twistranet's core features:
 
 - Download and install Python >= 2.6 (with setuptools and PIL)
 
-- Execute (as a superuser) "easy_install numericube-twistranet" ; this will normally download and install twistranet and all dependencies.
+- Execute (as a superuser) "pip install numericube-twistranet" ; this will normally download and install twistranet and all dependencies.
 
 To create a new project:
 
