@@ -32,6 +32,8 @@ FIXTURES = [
         title_fr = "Administrateurs",
         description_en = "twistranet admin team",
         description_fr = "L'équipe d'administration de twistranet",
+        baseline_en = "",
+        baseline_fr = "",
         permissions = "workgroup",
         publisher = GlobalCommunity.objects.filter(),
     ),

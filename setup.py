@@ -37,7 +37,7 @@ setup(name = 'numericube-twistranet',
           'django-piston==0.2.2.1',
           'django-haystack==1.2.7',
           'django-tinymce==1.5.1b4',
-          'django-modeltranslation==0.4.1',
+          'django-modeltranslation==0.2',
           'sorl-thumbnail==11.12',
           # -*- Extra requirements: -*-
       ],
