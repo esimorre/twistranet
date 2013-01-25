@@ -128,6 +128,22 @@ TEST_RUNNER = 'twistranet.core.test_runner.TwistranetTestRunner'
 TWISTRANET_THEME_APP = "twistranet.themes.twistheme"
 TWISTRANET_STATIC_PATH = os.path.join(HERE, 'www', 'static')
 
+STATICFILES_DIRS = (
+    TWISTRANET_STATIC_PATH,
+)
+
+COMPRESS_ENABLED = True
+COMPRESS_ROOT = TWISTRANET_STATIC_PATH
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    'compressor.finders.CompressorFinder',
+)
+
+STATIC_URL = '/static/'
+
 # Some project-dependant settings
 TINYMCE_JS_URL = "/static/js/tiny_mce/tiny_mce.js"
 TINYMCE_JS_ROOT = "%s/static/tiny_mce" % HERE
@@ -202,6 +218,7 @@ _INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
+    'compressor',
 
     # admin stuff
     'django.contrib.admin',
@@ -214,7 +231,6 @@ _INSTALLED_APPS = (
     'modeltranslation',
     
     # TwistraNet core stuff
-    'twistranet.compress',
     'twistranet.twistapp',
     'twistranet.search',
     
@@ -249,65 +265,6 @@ BASE_URL_DEPDENDANT = (
     "TINYMCE_JS_URL",
 )
 
-##################################
-# django-compress configuration  #
-##################################
-# compress only when no debug
-COMPRESS = not DEBUG
-# you can use a css optimizer like css tidy
-COMPRESS_CSS_FILTERS = None
-# new file names after each synccompress (see output_filename below)
-COMPRESS_VERSION = True
-# when COMPRESS_AUTO==True a new version of output files
-# are generated each time source files are changed
-# but this could impact performances.
-# You could prefer using "python manage.py synccompress" to force new output
-# generation each time you change the files
-COMPRESS_AUTO = True
-COMPRESS_CSS = {
-    'twist_theme': {
-        'source_filenames': ('css/reset.css',
-                             'css/typography.css',
-                             'css/template.css',
-                             'css/menu.css',
-                             'css/style.css',
-                             'css/login.css',
-                             'css/forms.css',
-                             'css/content.css'),
-        'output_filename': 'css/twist_theme.r?.css',
-        'extra_context': {
-            'media': 'all',
-        },
-    },
-    'twist_tools': {
-        'source_filenames': ('css/jquery-ui-1.8.5.custom.css',
-                             'css/jquery-dd.css',
-                             'css/fileuploader.css',),
-        'output_filename': 'css/twist_tools.r?.css',
-        'extra_context': {
-            'media': 'screen',
-        },
-    },
-
-}
-
-COMPRESS_JS = {
-    'twist_all': {
-        'source_filenames': ('js/includes/lib/include.js',
-                             'js/includes/lib/scrollTo.js',
-                             'js/includes/lib/browserdetect.js',
-                             'js/includes/lib/hoverIntent.js',
-                             'js/includes/lib/superfish.js',
-                             'js/includes/mad.jquery.js',
-                             'js/jquery.livesearch.js',
-                             'js/fileuploader.js',
-                             'js/tn_quickupload_helpers.js',
-                             'js/comments.js',
-                             'js/sharing.js',
-                             'js/tn.js', ),
-        'output_filename': 'js/twist_all.r?.js',
-    }
-}
 
 # Local and bootstrap settings.
 TWISTRANET_IMPORT_SAMPLE_DATA = False

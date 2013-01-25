@@ -170,6 +170,7 @@ def twistranet_project():
         f.close()
         # fix settings for first server start
         settings.TWISTRANET_STATIC_PATH = DEVEL_TWISTRANET_STATIC_PATH
+        settings.STATICFILES_DIRS = (DEVEL_TWISTRANET_STATIC_PATH)
 
     # As we use a standard sqlite configuration, we can boostrap quite safely just now.
     # then we start the server

@@ -2,6 +2,8 @@
 ======
 * Twistranet is now django 1.4.x compliant
 
+* django-compress replaced by django_compressor, more powerful tool
+
 2.0-alpha, 2011/10/04
 =====================
 
