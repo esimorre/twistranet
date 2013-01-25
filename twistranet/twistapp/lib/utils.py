@@ -1,6 +1,15 @@
+import re
 from django.core.cache import cache
 from django.conf import settings
 from django.utils.html import *
+
+
+# removed in django_1.4
+LEADING_PUNCTUATION  = ['(', '<', '&lt;']
+TRAILING_PUNCTUATION = ['.', ',', ')', '>', '\n', '&gt;']
+punctuation_re = re.compile('^(?P<lead>(?:%s)*)(?P<middle>.*?)(?P<trail>(?:%s)*)$' % \
+    ('|'.join([re.escape(x) for x in LEADING_PUNCTUATION]),
+    '|'.join([re.escape(x) for x in TRAILING_PUNCTUATION])))
 
 
 def _get_site_name_or_baseline(return_baseline = False):

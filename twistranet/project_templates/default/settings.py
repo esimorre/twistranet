@@ -128,6 +128,22 @@ TEST_RUNNER = 'twistranet.core.test_runner.TwistranetTestRunner'
 TWISTRANET_THEME_APP = "twistranet.themes.twistheme"
 TWISTRANET_STATIC_PATH = os.path.join(HERE, 'www', 'static')
 
+STATICFILES_DIRS = (
+    TWISTRANET_STATIC_PATH,
+)
+
+COMPRESS_ENABLED = True
+COMPRESS_ROOT = TWISTRANET_STATIC_PATH
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    'compressor.finders.CompressorFinder',
+)
+
+STATIC_URL = '/static/'
+
 # Some project-dependant settings
 TINYMCE_JS_URL = "/static/js/tiny_mce/tiny_mce.js"
 TINYMCE_JS_ROOT = "%s/static/tiny_mce" % HERE
@@ -202,6 +218,7 @@ _INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
+    'compressor',
 
     # admin stuff
     'django.contrib.admin',
@@ -247,6 +264,7 @@ BASE_URL_DEPDENDANT = (
     "LOGIN_REDIRECT_URL",
     "TINYMCE_JS_URL",
 )
+
 
 # Local and bootstrap settings.
 TWISTRANET_IMPORT_SAMPLE_DATA = False
