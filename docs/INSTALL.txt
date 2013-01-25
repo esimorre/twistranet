@@ -22,9 +22,9 @@ Requirements
 
 - PIL http://www.pythonware.com/products/pil/
 
-- PIP
+- pip
 
-PIP is the new installer for python packages, it replaces
+pip is the new installer for python packages, it replaces
 setuptools with many powerful features (install, list intalled, uninstall, upgrade ...)
 
 If setuptools is installed on your system (setuptools, also called easy_install is the old python packages installer), 
@@ -32,7 +32,7 @@ you can just enter at command prompt::
 
     $ easy_install pip
 
-If setuptools is not here, you can install PIP from sources, 
+If setuptools is not here, you can install pip from sources,
 
 under linux ::
 

@@ -37,7 +37,7 @@ Installation
 Installation - short version
 -----------------------------
 
-- Install requirements (Python 2.6, PIP and PIL)
+- Install requirements (Python 2.6, pip and PIL)
 
 - In any directory, just execute:
 
@@ -66,7 +66,7 @@ then you have to create a project (which is an instance of a twistranet site).
 
 To install twistranet's core features:
 
-- Download and install Python >= 2.6 (with PIP and PIL)
+- Download and install Python >= 2.6 (with pip and PIL)
 
 - Execute (as a superuser) "pip install numericube-twistranet" ; this will normally download and install twistranet and all dependencies.
 
@@ -106,9 +106,9 @@ More informations
 
 You can get other informations in the "docs" folder inside this package about:
 
-- installing PIP
+- installing pip
 
-- installing/upgrading/uninstalling twistranet with PIP
+- installing/upgrading/uninstalling twistranet with pip
 
 - installing twistranet with pip behind a proxy
 
