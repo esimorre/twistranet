@@ -166,11 +166,12 @@ def twistranet_project():
         f.close()
         f = open(settings_path, "w")
         data += '''
-        # ADDED FOR DEVEL MODE ONLY
+# ADDED FOR DEVEL MODE ONLY
 
-        TWISTRANET_STATIC_PATH = r"%s"
-        STATICFILES_DIRS = ( TWISTRANET_STATIC_PATH,)
-        LOCALE_PATHS = %s
+TWISTRANET_STATIC_PATH = r"%s"
+STATICFILES_DIRS = ( TWISTRANET_STATIC_PATH,)
+COMPRESS_ROOT = TWISTRANET_STATIC_PATH
+LOCALE_PATHS = %s
 
         ''' %(DEVEL_TWISTRANET_STATIC_PATH,
               DEVEL_TWISTRANET_LOCALE_PATHS,)
