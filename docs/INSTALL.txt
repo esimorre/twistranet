@@ -1,5 +1,5 @@
-Twistranet - Installation
-=========================
+Twistranet - Installation details
+=================================
 
 Requirements
 ------------
@@ -15,7 +15,6 @@ Requirements
 - an internet connection
 
 - python2.6 or later (python 3 is not supported)
-- twistranet can also work with python2.5 (but simplejson must be installed first)
 
     To install python, goto http://python.org/download/
     choose, download, and install the last Python 2.xx for your platform.
@@ -37,19 +36,19 @@ If setuptools is not here, you can install PIP from sources,
 
 under linux ::
 
-    $ wget http://pypi.python.org/packages/source/p/pip/pip-0.8.1.tar.gz 
-    $ tar xzf pip-0.8.1.tar.gz
+    $ wget http://pypi.python.org/packages/source/p/pip/pip-1.2.1.tar.gz
+    $ tar xzf pip-1.2.1.tar.gz
 
 .. note:: Under macos you can use curl -O <url> instead of wget
 
-.. note:: Under windows just download and unpack the folder 'pip-0.8.1'
+.. note:: Under windows just download and unpack the folder 'pip-1.2.1'
 
 Open a command prompt::
 
-    $ cd pip-0.8.1
+    $ cd pip-1.2.1
     $ python setup.py install
     $ cd ..
-    $ rm -Rf pip-0.8.1
+    $ rm -Rf pip-1.2.1
 
 
 .. seealso:: More information can be found here : http://guide.python-distribute.org/installation.html
@@ -92,6 +91,10 @@ in your python path ::
   
   - sorl-thumbnail
 
+  - django_compressor
+  
+  - django-modeltranslation
+
 
 Create a new Twistranet project
 -------------------------------
@@ -102,7 +105,7 @@ launch at command prompt
 
     $ twistranet_project mysite
 
-This will install all you need for your project in 'mysite' folder :
+This will create 'mysite' folder, and install all you need for your project in it :
 
   - your project configuration 'local_settings.py'
   

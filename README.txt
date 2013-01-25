@@ -25,7 +25,7 @@ Otherwise The last Django version will be downloaded and installed at setup.
 
 Other requirements:
 
-- python-setuptools
+- pip
 
 - python-imaging (aka PIL)
 
@@ -37,9 +37,9 @@ Installation
 Installation - short version
 -----------------------------
 
-- Install requirements (Python, PIP and PIL)
+- Install requirements (Python 2.6, PIP and PIL)
 
-- Anywhere, just execute:
+- In any directory, just execute:
 
   - (sudo) pip install numericube-twistranet
 
@@ -106,10 +106,14 @@ More informations
 
 You can get other informations in the "docs" folder inside this package about:
 
+- installing PIP
+
 - installing/upgrading/uninstalling twistranet with PIP
 
+- installing twistranet with pip behind a proxy
+
 - installing Twistranet for testing and development
-  (using virtualenv / installing in place the devel package from GITHUB / localization / running tests ...)
+  (using virtualenv / installing in place the devel package from github.com / localization / running tests ...)
 
 - Running Twistranet in debug mode
 
