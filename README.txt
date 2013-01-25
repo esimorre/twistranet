@@ -17,9 +17,8 @@ twistranet is published under the termes of the GNU Affero General Public Licens
 Requirements
 ============
 
-TwistraNet is written in PYTHON (>= 2.6, or >= 2.5 + simplejson)
-Twistranet is based on Django Framework (as of writing, Django >= 1.2 is mandatory,
-Django >= 1.3 is highly recommanded).
+TwistraNet is written in PYTHON (>= 2.6)
+Twistranet is based on Django Framework (as of writing, for v2.0.0 Django >= 1.4 is mandatory,)
 
 If Django is always installed you can install twistranet over your Django platform.
 Otherwise The last Django version will be downloaded and installed at setup.
@@ -38,19 +37,18 @@ Installation
 Installation - short version
 -----------------------------
 
-- Install requirements (Python, SetupTools and PIL)
+- Install requirements (Python, PIP and PIL)
 
-- Download and untar (or unzip) twistranet from https://github.com/numericube/twistranet/tarball/master
+- Anywhere, just execute:
 
-- In the unzipped directory, just execute:
+  - (sudo) pip install numericube-twistranet
 
-  - (sudo) python ./setup.py install clean
-
-twistranet is now installed. You can have many sites with just one twistranet installation, so you need to explicitly deploy and bootstrap your new site.
+twistranet is now installed.
+You can have many sites with just one twistranet installation, so you need to explicitly deploy and bootstrap your new site.
 
   - (sudo) twistranet_project <path_to_my_new_site>
 
-Don't forget to write down your generated admin password!!
+Don't forget to write down your generated admin password (just look at first server start LOG)!!
 
 Your server should now be fully working and running on http://localhost:8000 !
 
@@ -68,7 +66,7 @@ then you have to create a project (which is an instance of a twistranet site).
 
 To install twistranet's core features:
 
-- Download and install Python >= 2.6 (with setuptools and PIL)
+- Download and install Python >= 2.6 (with PIP and PIL)
 
 - Execute (as a superuser) "pip install numericube-twistranet" ; this will normally download and install twistranet and all dependencies.
 
@@ -108,10 +106,10 @@ More informations
 
 You can get other informations in the "docs" folder inside this package about:
 
-- installing/upgrading/uninstalling twistranet with PIP (quick and clean)
+- installing/upgrading/uninstalling twistranet with PIP
 
 - installing Twistranet for testing and development
-  (using virtualenv / installing in place the devel package / localization / running tests ...)
+  (using virtualenv / installing in place the devel package from GITHUB / localization / running tests ...)
 
 - Running Twistranet in debug mode
 
@@ -133,7 +131,6 @@ If you've got this message, that means the autoinstall procedure of twistranet c
 Just install django (see www.django-project.org) either from sources or from a package from your OS,
 and run "python setup.py install" again.
 
-Seems that it is a python-2.5 related problem.
 
 I've lost my admin password!
 ----------------------------
