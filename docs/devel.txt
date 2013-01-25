@@ -4,13 +4,13 @@ TWISTRANET : NOTES FOR DEVELOPPERS
 Devel platform installation
 ----------------------------
 
-Prerequis:: 
+Required::
 
 git, wget, python2.6-dev, PIL (with lib-jpeg, lib-png), gettext, virtualenv
 
 .. note:: Under Linux all these packages can be installed using the system packages manager
 
-.. note:: virtualenv also installs PIP
+.. note:: virtualenv also installs pip
 
 Create a virtual env for the application
 
@@ -122,3 +122,4 @@ To run a specific test in one twistranet application (eg test_azerty in twistran
     (twistranet-devel) $ python manage.py test twistranet.twistapp.MyTestCase.test_azerty
 
 .. note:: the MyTestCase class must be called in the tests/__init__.py
+

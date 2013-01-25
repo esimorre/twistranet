@@ -22,7 +22,7 @@ Requirements
 
 - PIL http://www.pythonware.com/products/pil/
 
-- pip
+- pip http://pypi.python.org/pypi/pip/1.2.1
 
 pip is the new installer for python packages, it replaces
 setuptools with many powerful features (install, list intalled, uninstall, upgrade ...)

@@ -25,9 +25,9 @@ Otherwise The last Django version will be downloaded and installed at setup.
 
 Other requirements:
 
-- pip
+- pip http://pypi.python.org/pypi/pip/1.2.1
 
-- python-imaging (aka PIL)
+- python-imaging (aka PIL) http://www.pythonware.com/products/pil/
 
 - python-ldap, only if you want to authenticated against LDAP/Active Directory.
 
@@ -104,7 +104,7 @@ Running Twistranet :
 More informations
 =================
 
-You can get other informations in the "docs" folder inside this package about:
+You can get more informations in the "docs" folder inside the package about:
 
 - installing pip
 
