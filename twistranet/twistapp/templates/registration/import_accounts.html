@@ -10,13 +10,14 @@
 
 {% block content %}
   <div class="colM" id="login-content">
-    <form id="login-form" action="" method="post" enctype="multipart/form-data">
+    <form id="login-form" action="" method="post" enctype="multipart/form-data"
+          accept-charset=="UTF-8">
         {% csrf_token %}
       <p>
           {% blocktrans %}Import users from csv file.{% endblocktrans %}
       </p>
       <div class="field">
-        <label>CSV File (csv lines must have this structure &quot;firstname;lastname;email&quot;)</label>
+        <label>CSV File (csv lines must have this structure &quot;firstname;lastname;email;community&quot;)</label>
         <input type="file" name="csv_file" />
       </div>
 

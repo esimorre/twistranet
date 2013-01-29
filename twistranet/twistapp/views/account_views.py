@@ -20,6 +20,7 @@ from twistranet.twistapp.signals import invite_user, reset_password
 from twistranet.twistapp.models import *
 from twistranet.twistapp.forms import account_forms, registration_forms
 from twistranet.twistapp.lib.slugify import slugify
+from twistranet.twistapp.lib.log import log
 from twistranet.actions import *
 from twistranet.core.views import *
 
@@ -769,36 +770,54 @@ class AccountsImport(BaseView):
                 if not line:
                     continue
                 # firstname;lastname;email
-                firstname = line[0]
-                lastname = line[1]
+                firstname = line[0].decode('utf8')
+                lastname = line[1].decode('utf8')
                 email = line[2]
                 username = email.split('@')[0]
-                username = slugify(username)
+                username = slugify(username).replace('_','-')
                 if User.objects.filter(username = username).exists():
-                    print "username %s exists" %username
-                    continue
-                # create user
-                import ipdb; ipdb.set_trace()
-                try:
-                    u = User.objects.create(
-                        username = username,
-                        first_name = firstname,
-                        last_name = lastname,
-                        email = email,
-                        is_superuser = False,
-                        is_active = True,
-                    )
-                    chars = string.ascii_letters + string.digits
-                    random.seed = (os.urandom(1024))
-                    password = ''.join(random.choice(chars) for i in range(6))
-                    u.set_password(password.lower())
-                    u.save()
+                    u = User.objects.get(username = username)
                     useraccount = UserAccount.objects.get(user = u)
-                    useraccount.title = u"%s %s" % (firstname, lastname)
-                    useraccount.save()
-                    print "User account '%s' for %s %s (%s) created !" %(username, firstname, lastname,  email)
-                except:
-                    print "Impossible to create account '%s' for %s %s (%s)" %(username, firstname, lastname,  email)
+                    log.debug( "User account '%s' already exixts" %useraccount.title )
+                else:
+                    # create user
+                    try:
+                        u = User.objects.create(
+                            username = username,
+                            first_name = firstname,
+                            last_name = lastname,
+                            email = email,
+                            is_superuser = False,
+                            is_active = True,
+                        )
+                        chars = string.ascii_letters + string.digits
+                        random.seed = (os.urandom(1024))
+                        password = ''.join(random.choice(chars) for i in range(6))
+                        u.set_password(password.lower())
+                        u.save()
+                        useraccount = UserAccount.objects.get(user = u)
+                        useraccount.title = u"%s %s" % (firstname, lastname)
+                        useraccount.save()
+                        log.debug( "User account '%s' for %s %s (%s) created !" %(username, firstname, lastname,  email))
+                    except:
+                        log.debug( "Impossible to create account '%s' for %s %s (%s)" %(username, firstname, lastname,  email))
+                        continue
+
+                community_title = line[3].decode('utf8')
+                cid = slugify(community_title)
+                if  Community.objects.filter(slug = cid).exists():
+                    log.debug( "Community %s already exists !" %community )
+                else:
+                    c  = Community.objects.create(
+                        slug = cid,
+                        title = community_title,
+                        permissions = "workgroup"
+                    )
+                    c.save()
+
+                com = Community.objects.get(slug= cid)
+                com.join(account=useraccount)
+                log.debug( "user %s join the community %s !" %(useraccount.title, community_title) )
 
 
 
