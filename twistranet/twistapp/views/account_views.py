@@ -819,6 +819,7 @@ class AccountsImport(BaseView):
                 com.join(account=useraccount)
                 log.debug( "user %s join the community %s !" %(useraccount.title, community_title) )
 
+            messages.info( self.request, u"import finished",)
 
 
 
