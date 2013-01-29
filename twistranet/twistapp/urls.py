@@ -3,6 +3,10 @@ import os.path
 from twistranet.twistapp.views import *
 from twistranet.twistapp.lib.slugify import SLUG_REGEX
 
+# Uncomment the next two lines to enable the admin:
+from django.contrib import admin
+admin.autodiscover()
+
 handler404 = AsView(Error404View)
 # handler500 = AsView(Error500View)
 
@@ -78,6 +82,7 @@ urlpatterns = patterns('',
     url(r'^logout/$',                           AsPublicView(AccountLogout), name = AccountLogout.name, ),
     url(r'^forgotten_password/$',               AsPublicView(AccountForgottenPassword), name = AccountForgottenPassword.name, ),
     url(r'^reset/(\w+)/([\w\-@%\._]+)$',        AsPublicView(ResetPassword), name = ResetPassword.name, ),
+    url(r'^accounts_import/$',                  AsView(AccountsImport), name = AccountsImport.name, ),
     
     # Administration pages.
     url(r'^configuration/$',                    AsView(ConfigurationEdit), name = ConfigurationEdit.name),
@@ -95,6 +100,9 @@ urlpatterns = patterns('',
 
     # Javascript dynamic stuff
     url(r'^tn_vars.js$',                        'twistranet.twistapp.views.js_vars', name = "twistranet_js_vars",),
+
+   # Uncomment the next line to enable the admin:
+    url(r'^admin/', include(admin.site.urls)),
 )
 
 

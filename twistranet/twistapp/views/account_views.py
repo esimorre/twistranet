@@ -555,6 +555,8 @@ class AccountJoin(UserAccountEdit):
                 messages.success(self.request, _("Your account is now created. You can login to twistranet."))
                 raise MustRedirect(reverse(AccountLogin.name))
 
+
+
 class AccountLogin(BaseView):
     template = "registration/login.html"
     name = "login"
@@ -739,6 +741,64 @@ class AccountLogout(BaseView):
         self.justloggedout = True
         logout(self.request)
 
+
+
+import os, random, string
+from StringIO import StringIO
+import csv
+
+class CSVDialect(csv.excel):
+    delimiter = ';'
+    lineterminator = '\r\n'
+
+class AccountsImport(BaseView):
+    template="registration/import_accounts.html"
+    name = "accounts_import"
+    title = _("Import accounts")
+    def prepare_view(self):
+        """
+        Render the import form
+        or do the import (from csv file posted).
+        """
+
+        if self.request.method == "POST" and \
+           self.request.FILES.get("csv_file", None):
+            csv_file = self.request.FILES.get("csv_file")
+            reader = csv.reader(csv_file, dialect=CSVDialect)
+            for line in reader:
+                if not line:
+                    continue
+                # firstname;lastname;email
+                firstname = line[0]
+                lastname = line[1]
+                email = line[2]
+                username = email.split('@')[0]
+                username = slugify(username)
+                if User.objects.filter(username = username).exists():
+                    print "username %s exists" %username
+                    continue
+                # create user
+                import ipdb; ipdb.set_trace()
+                try:
+                    u = User.objects.create(
+                        username = username,
+                        first_name = firstname,
+                        last_name = lastname,
+                        email = email,
+                        is_superuser = False,
+                        is_active = True,
+                    )
+                    chars = string.ascii_letters + string.digits
+                    random.seed = (os.urandom(1024))
+                    password = ''.join(random.choice(chars) for i in range(6))
+                    u.set_password(password.lower())
+                    u.save()
+                    useraccount = UserAccount.objects.get(user = u)
+                    useraccount.title = u"%s %s" % (firstname, lastname)
+                    useraccount.save()
+                    print "User account '%s' for %s %s (%s) created !" %(username, firstname, lastname,  email)
+                except:
+                    print "Impossible to create account '%s' for %s %s (%s)" %(username, firstname, lastname,  email)
 
 
 

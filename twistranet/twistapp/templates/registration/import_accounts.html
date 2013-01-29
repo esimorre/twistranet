@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block topbar %}{% endblock %}
+{% block menu_items %}{% endblock %}
+{% block breadcrumb %}{% endblock %}
+{% block searchform %}{% endblock %}
+{% block globalbar %}{% include 'registration/introduction.box.html' %}{% endblock %}
+{% block contextbar %}{% endblock %}
+
+{% block content %}
+  <div class="colM" id="login-content">
+    <form id="login-form" action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+      <p>
+          {% blocktrans %}Import users from csv file.{% endblocktrans %}
+      </p>
+      <div class="field">
+        <label>CSV File (csv lines must have this structure &quot;firstname;lastname;email&quot;)</label>
+        <input type="file" name="csv_file" />
+      </div>
+
+      <div class="submit-row">
+          <input type="submit" value="{% trans 'Import Users' %}" />
+      </div>
+    </form>
+  </div>
+{% endblock %}
