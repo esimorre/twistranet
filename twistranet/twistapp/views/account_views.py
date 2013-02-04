@@ -778,7 +778,7 @@ class AccountsImport(BaseView):
                 if User.objects.filter(username = username).exists():
                     u = User.objects.get(username = username)
                     useraccount = UserAccount.objects.get(user = u)
-                    log.debug( "User account '%s' already exixts" %useraccount.title )
+                    log.info( "User account '%s' already exixts" %useraccount.title )
                 else:
                     # create user
                     try:
@@ -798,15 +798,15 @@ class AccountsImport(BaseView):
                         useraccount = UserAccount.objects.get(user = u)
                         useraccount.title = u"%s %s" % (firstname, lastname)
                         useraccount.save()
-                        log.debug( "User account '%s' for %s %s (%s) created !" %(username, firstname, lastname,  email))
+                        log.info( "User account '%s' for %s %s (%s) created !" %(username, firstname, lastname,  email))
                     except:
-                        log.debug( "Impossible to create account '%s' for %s %s (%s)" %(username, firstname, lastname,  email))
+                        log.warning( "Impossible to create account '%s' for %s %s (%s)" %(username, firstname, lastname,  email))
                         continue
 
                 community_title = line[3].decode('utf8')
                 cid = slugify(community_title)
                 if  Community.objects.filter(slug = cid).exists():
-                    log.debug( "Community %s already exists !" %community )
+                    log.info( "Community %s already exists !" %community )
                 else:
                     c  = Community.objects.create(
                         slug = cid,
@@ -817,7 +817,7 @@ class AccountsImport(BaseView):
 
                 com = Community.objects.get(slug= cid)
                 com.join(account=useraccount)
-                log.debug( "user %s join the community %s !" %(useraccount.title, community_title) )
+                log.info( "user %s join the community %s !" %(useraccount.title, community_title) )
 
             messages.info( self.request, u"import finished",)
 
