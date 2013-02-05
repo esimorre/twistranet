@@ -43,6 +43,15 @@ content_created.connect(
     weak = False,
 )
 
+user_imported.connect(
+    handlers.MailHandler(
+        recipient_arg = "target",
+        text_template = "email/import_user.txt",
+        html_template = "email/import_user.html",
+    ),
+    weak = False,
+)
+
 #                                       #
 #           Community signals           #
 #                                       #

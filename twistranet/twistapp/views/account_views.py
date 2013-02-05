@@ -6,7 +6,7 @@ from django.template import Context, RequestContext, loader
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound, HttpResponseServerError
 from django.forms import widgets
 from django.template.loader import get_template
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from django.core.urlresolvers import reverse
 from django.contrib.auth import logout
 from django.contrib.auth.models import User, UNUSABLE_PASSWORD
@@ -15,6 +15,7 @@ from django.contrib import messages
 from django.utils.translation import ugettext as _
 from django.utils.safestring import mark_safe
 from django.conf import settings
+
 from twistranet.twistapp.signals import invite_user, reset_password, user_imported
 
 from twistranet.twistapp.models import *
@@ -760,11 +761,16 @@ class AccountsImport(BaseView):
     template="registration/import_accounts.html"
     name = "accounts_import"
     title = _("Import accounts")
+    
+
     def prepare_view(self):
         """
         Render the import form
         or do the import (from csv file posted).
         """
+        
+        if not (self.request.user.is_active and self.request.user.is_staff):
+            raise PermissionDenied("Forbidden action.")
 
         if self.request.method == "POST" and \
            self.request.FILES.get("csv_file", None):
