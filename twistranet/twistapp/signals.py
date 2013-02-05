@@ -59,3 +59,8 @@ request_join_community = django.dispatch.Signal(
 )
 
 
+# User imported signal
+user_imported =  django.dispatch.Signal(
+    providing_args = ["target", "reset_password_absolute_url",]
+)
+

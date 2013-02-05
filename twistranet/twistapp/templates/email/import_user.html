@@ -1,0 +1,32 @@
+{% extends "email/basemail.html" %}
+{% load i18n %}
+
+{% block subject %}{{ site_name }} - {% blocktrans %}Welcome to Twistranet !{% endblocktrans %}{% endblock %}
+
+{% block content %}
+{% with target.title as target_title %}
+{% with target.user.username as username %}
+
+<h2 class="h2">{% blocktrans %}Welcome to Twistranet !{% endblocktrans %}</h2>
+<p>
+    {% blocktrans %}Dear {{ target_title }},{% endblocktrans %}
+</p>
+<p>
+    {% blocktrans %}You has been registered as a new Twistranet member for the site <a href="{{ domain }}">{{ site_name }}</a>.{% endblocktrans %}
+</p>
+<p>
+    {% blocktrans %}Your username is <strong>{{ username }}</strong>.{% endblocktrans %}
+</p>
+<p>
+    {% blocktrans %}Before anything else, you have to choose a password for your Twistranet account.{% endblocktrans %}
+</p>
+<p>
+    {% blocktrans %}To create your password, just <a href="{{ domain }}{{ reset_password_url }}">follow this link</a>.{% endblocktrans %}
+</p>
+<p>
+ {% blocktrans %}Best regards.{% endblocktrans %}
+</p>
+
+{% endwith %}
+{% endwith %}
+{% endblock %}

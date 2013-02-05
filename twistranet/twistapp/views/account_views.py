@@ -15,7 +15,7 @@ from django.contrib import messages
 from django.utils.translation import ugettext as _
 from django.utils.safestring import mark_safe
 from django.conf import settings
-from twistranet.twistapp.signals import invite_user, reset_password
+from twistranet.twistapp.signals import invite_user, reset_password, user_imported
 
 from twistranet.twistapp.models import *
 from twistranet.twistapp.forms import account_forms, registration_forms
@@ -752,7 +752,11 @@ class CSVDialect(csv.excel):
     delimiter = ';'
     lineterminator = '\r\n'
 
+
 class AccountsImport(BaseView):
+    """
+    import users view
+    """
     template="registration/import_accounts.html"
     name = "accounts_import"
     title = _("Import accounts")
@@ -793,12 +797,23 @@ class AccountsImport(BaseView):
                         chars = string.ascii_letters + string.digits
                         random.seed = (os.urandom(1024))
                         password = ''.join(random.choice(chars) for i in range(6))
-                        u.set_password(password.lower())
+                        u.set_password(password)
                         u.save()
                         useraccount = UserAccount.objects.get(user = u)
                         useraccount.title = u"%s %s" % (firstname, lastname)
                         useraccount.save()
                         log.info( "User account '%s' for %s %s (%s) created !" %(username, firstname, lastname,  email))
+
+                        # notify imported user (a mail is sent to prevent user)
+                        h = "%s%s%s%s" % (settings.SECRET_KEY, email, password, time.strftime("%Y%m%d"))
+                        h = hashlib.md5(h).hexdigest()
+                        reset_link = reverse(ResetPassword.name, args = (h, urllib.quote_plus(email)))
+
+                        user_imported.send(
+                            sender = self.__class__,
+                            target = useraccount,
+                            reset_password_url = reset_link,
+                        )
                     except:
                         log.warning( "Impossible to create account '%s' for %s %s (%s)" %(username, firstname, lastname,  email))
                         continue

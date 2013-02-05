@@ -1,0 +1,5 @@
+{# {% extends "email/basemail.txt" %} #}
+{% load i18n %}
+Subject: {{ site_name }} - {% blocktrans %}Welcome to Twistranet !{% endblocktrans %}
+
+(This template is not available in plain text)
