@@ -86,7 +86,17 @@ class AsView(AsPublicView):
     def has_access(self, request):
         from twistranet.twistapp.models import GlobalCommunity, AnonymousAccount
         return GlobalCommunity.objects.get_query_set(request = request).exists()
-            
+
+
+class AsAdminView(AsPublicView):
+    """
+    Used in url.py for views restricted to admins.
+    """
+    def has_access(self, request):
+        user = request.user.get_profile()
+        return user.is_admin
+
+
 class BaseView(object):
     """
     This is used as a foundation for our classical views.

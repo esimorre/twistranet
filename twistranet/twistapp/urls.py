@@ -82,12 +82,12 @@ urlpatterns = patterns('',
     url(r'^logout/$',                           AsPublicView(AccountLogout), name = AccountLogout.name, ),
     url(r'^forgotten_password/$',               AsPublicView(AccountForgottenPassword), name = AccountForgottenPassword.name, ),
     url(r'^reset/(\w+)/([\w\-@%\._]+)$',        AsPublicView(ResetPassword), name = ResetPassword.name, ),
-    url(r'^accounts_import/$',                  AsView(AccountsImport), name = AccountsImport.name, ),
     
     # Administration pages.
-    url(r'^configuration/$',                    AsView(ConfigurationEdit), name = ConfigurationEdit.name),
-    url(r'^menu_builder/$',                     AsView(MenuBuilder), name = MenuBuilder.name),
-    url(r'^menuitem/json/(\w+)/(\w+)/validate$',      AsView(MenuItemValidate), name = MenuItemValidate.name),
+    url(r'^configuration/$',                    AsAdminView(ConfigurationEdit), name = ConfigurationEdit.name),
+    url(r'^menu_builder/$',                     AsAdminView(MenuBuilder), name = MenuBuilder.name),
+    url(r'^menuitem/json/(\w+)/(\w+)/validate$',      AsAdminView(MenuItemValidate), name = MenuItemValidate.name),
+    url(r'^accounts_import/$',                  AsAdminView(AccountsImport), name = AccountsImport.name, ),
 
     # Search engine
     (r'^search/',                               include('twistranet.search.urls')),

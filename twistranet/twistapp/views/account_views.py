@@ -768,9 +768,6 @@ class AccountsImport(BaseView):
         Render the import form
         or do the import (from csv file posted).
         """
-        
-        if not (self.request.user.is_active and self.request.user.is_staff):
-            raise PermissionDenied("Forbidden action.")
 
         if self.request.method == "POST" and \
            self.request.FILES.get("csv_file", None):
