@@ -789,6 +789,7 @@ class AccountsImport(BaseView):
                 else:
                     # create user
                     try:
+                        __account__ = SystemAccount.get()
                         u = User.objects.create(
                             username = username,
                             first_name = firstname,
@@ -817,6 +818,7 @@ class AccountsImport(BaseView):
                             target = useraccount,
                             reset_password_url = reset_link,
                         )
+                        del __account__
                     except:
                         log.warning( "Impossible to create account '%s' for %s %s (%s)" %(username, firstname, lastname,  email))
                         continue
