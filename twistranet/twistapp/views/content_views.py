@@ -151,11 +151,16 @@ class ContentCreate(ContentEdit):
         # XXX We may need to have a content creation action register system someday.
         actions = []
         for ctype in form_registry.getFullpageForms(creation = True):
+            getparam = ""
+            fname =  ctype["form_class"].form_name()
+            if fname != ctype["content_type"]:
+                getparam = "?form=%s" % fname
             actions.append(
                 Action(
                     category = CONTENT_CREATION_ACTIONS,
-                    label = _(ctype["content_type"]),
-                    url = reverse(self.name, args = (publisher.id, ctype["content_type"])),
+                    label = _(ctype["form_class"].form_name()),
+                    #label = _(ctype["content_type"]),
+                    url = reverse(self.name, args = (publisher.id, ctype["content_type"])) + getparam,
                     confirm = None,
                 )
             )
