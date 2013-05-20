@@ -6,7 +6,11 @@ from django.contrib import admin
 #     extra = 1
 
 class CommunityAdmin(admin.ModelAdmin):
-    pass
+    fieldsets = (
+        (None, {
+            'fields': ('slug', 'title', 'description',)
+        }),
+    )
     # inlines = (CommunityMembershipInline,)
 
 admin.site.register(Community)
