@@ -27,14 +27,16 @@ N_DISPLAYED_ITEMS = 30         # Number of images to display in the inline field
 
 class TagsWidget(forms.SelectMultiple):
     def _media(self):
+        """
         base_url = settings.MEDIA_URL
         while base_url.endswith('/'):
             base_url = base_url[:-1]
+        """
         return forms.Media(
             css = {
-                'all': ('%s/static/js/FCBKcomplete/style.css' % base_url, ),
+                'all': ('/static/js/FCBKcomplete/style.css', ),
             },
-            js = ('%s/static/js/FCBKcomplete/jquery.fcbkcomplete.min.js' % base_url, )
+            js = ('/static/js/FCBKcomplete/jquery.fcbkcomplete.min.js', )
         )
     media = property(_media)
 

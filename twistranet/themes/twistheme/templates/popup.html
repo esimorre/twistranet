@@ -24,14 +24,14 @@
       <style type="text/css" media="screen"><!-- @import url(/static/css/fileuploader.css); --></style>
     {% endcompress %}
     {% block local_css %}{% endblock %}
-    <!--[if lte IE 7]><style type="text/css" media="all">@import url({% url twistranet_home %}static/css/ie7.css);</style><![endif]-->
-    <!--[if lte IE 9]><style type="text/css" media="all">@import url({% url twistranet_home %}static/css/ie.css);</style><![endif]-->
-    <script type="text/javascript" src="{% url twistranet_home %}static/js/jquery.js" charset="utf-8"></script>
+    <!--[if lte IE 7]><style type="text/css" media="all">@import url(/static/css/ie7.css);</style><![endif]-->
+    <!--[if lte IE 9]><style type="text/css" media="all">@import url(/static/css/ie.css);</style><![endif]-->
+    <script type="text/javascript" src="/static/js/jquery.js" charset="utf-8"></script>
     <script type="text/javascript" src="{% url twistranet_js_vars %}" charset="utf-8"></script>
-    <script type="text/javascript" src="{% url twistranet_home %}static/js/jquery-ui-1.8.10.custom.min.js" charset="utf-8"></script>
-    <script type="text/javascript" src="{% url twistranet_home %}static/js/jquery.dd.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/static/js/jquery-ui-1.8.10.custom.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/static/js/jquery.dd.js" charset="utf-8"></script>
     <!-- XXX TODO : put this script in resource widget javascript helpers has nothing todo here -->
-    <script type="text/javascript" src="{% url twistranet_home %}static/js/tiny_mce/tiny_mce_popup.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/static/js/tiny_mce/tiny_mce_popup.js" charset="utf-8"></script>
     {% compress js %}
       <script src="/static/js/includes/lib/include.js" type="text/javascript"></script>
       <script src="/static/js/includes/lib/scrollTo.js" type="text/javascript"></script>
