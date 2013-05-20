@@ -19,7 +19,7 @@ N_DISPLAYED_ITEMS = 30         # Number of images to display in the inline field
 
 class ResourceWidget(forms.MultiWidget):
     query_set = None
-
+    choices = ()
     def _media(self):
         base_url = settings.MEDIA_URL
         while base_url.endswith('/'):
