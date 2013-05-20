@@ -46,6 +46,21 @@ def resource_image(resource):
         return """<a href="%(url)s" title="%(title)s"><img class="image-inline" src="%(thumburl)s" alt="%(title)s" /></a>""" % d
     return """<a href="%(url)s" title="%(title)s"><img class="file-icon" src="%(thumburl)s" /><span>%(title)s</span></a>""" % d
 
+def resource_image2(resource):
+    """
+    Render a resource image as an HTML tag
+    """
+    is_image = resource.is_image
+    thumbnails = resource.thumbnails
+    d = {
+        'thumburl': is_image and thumbnails['summary'].url or thumbnails['icon'].url,
+        'url': resource.get_absolute_url(),
+        'title': resource.title or "",
+    }
+    if is_image:
+        return """<img src="%(thumburl)s" alt="%(title)s" />""" % d
+    return """<img src="%(thumburl)s" /><span>%(title)s</span>""" % d
+    
 
 matches = (
     # regex,                fast_reverse,         func,       model,          lookup field
@@ -54,7 +69,7 @@ matches = (
 #    (content_id_regex,      'content_by_id',      None,       Content,        "id",               ),
     (content_slug_regex,    'content_by_slug',    None,       Content,        "slug",             ),
     (content_id_regex,      'resource_by_id',     resource_image,             Resource,       "id",               ),
-#    (content_slug_regex,    'resource_by_slug',   resource_image,             Resource,       "slug",             ),
+    (content_slug_regex,    'resource_by_slug',   resource_image2,             Resource,       "slug",             ),
 )
 
 
@@ -122,6 +137,9 @@ def escape_wiki(text, lookup = False, autoescape=None):
 
     # Replace the global matches
     for regex, fast_reverse, func, model_class, lookup_field in matches:
+        # ugly
+        if not lookup and func == resource_image2:
+            continue
         subf = Subf(lookup, fast_reverse, func, model_class, lookup_field )
         text = regex.sub(subf, text)
 
