@@ -8,6 +8,9 @@ from twistranet.twistapp.lib.utils import formatbytes
 from twistranet.twistapp.models.content import Content
 from twistranet.twistapp.models import fields
 
+from django.utils.translation import ugettext_lazy as _
+
+
 class StatusUpdate(Content):
     """
     StatusUpdate is the most simple content available (except maybe helloworld).
@@ -82,8 +85,8 @@ class Document(Content):
     class Meta:
         app_label = 'twistapp'
 
-    text = models.TextField()
-
+    text = models.TextField(verbose_name=_('Text'))
+    
 class File(Content):
     """
     Abstract class which represents a File (as a Resource) in database.

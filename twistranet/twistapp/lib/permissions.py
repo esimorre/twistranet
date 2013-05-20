@@ -1,5 +1,7 @@
 from roles import *
 
+from django.utils.translation import ugettext_lazy as _
+
 # Basic permissions
 # TODO: List which roles are possible for each permission kind.
 can_list = "can_list"           # BASIC ACCESS PERMISSION. You won't be able to do anything if you can't list an object.
@@ -54,7 +56,7 @@ public_template = PermissionTemplate((
     {
         "id":               "public",
         "name":             "Public",
-        "description":      "Always public.",
+        "description":      _("Always public."),
         can_list:           public,
         can_view:           public,
         can_edit:           owner,
@@ -67,7 +69,7 @@ content_templates = PermissionTemplate((
     {
         "id":               "public",
         "name":             "Public",
-        "description":      "Content visible to people who can view this account.",
+        "description":      _("Content visible to people who can view this account."),
         can_list:           public,
         can_view:           public,
         can_edit:           owner_or_network_role,
@@ -75,8 +77,8 @@ content_templates = PermissionTemplate((
     },
     {
         "id":               "network",
-        "name":             "My network only",
-        "description":      "Content visible only for people in my network.",
+        "name":             _("My network only"),
+        "description":      _("Content visible only for people in my network."),
         can_list:           network,
         can_view:           network,
         can_edit:           owner,
@@ -85,8 +87,8 @@ content_templates = PermissionTemplate((
     },
     {
         "id":               "members",
-        "name":             "Members only",
-        "description":      "Content visible only for community members.",
+        "name":             _("Members only"),
+        "description":      _("Content visible only for community members."),
         can_list:           network,
         can_view:           network,
         can_edit:           network,
@@ -95,8 +97,8 @@ content_templates = PermissionTemplate((
     },
     {
         "id":               "private",
-        "name":             "Private",
-        "description":      "Content visible only for you.",
+        "name":             _("Private"),
+        "description":      _("Content visible only for you."),
         can_list:           owner,
         can_view:           owner,
         can_edit:           owner,
@@ -110,7 +112,7 @@ ephemeral_templates = PermissionTemplate((
     {
         "id":               "public",
         "name":             "Public", 
-        "description":      "Content visible to people who can view this account.",
+        "description":      _("Content visible to people who can view this account."),
         can_list:           public,
         can_view:           public,
         can_edit:           system,
@@ -118,8 +120,8 @@ ephemeral_templates = PermissionTemplate((
     },
     {
         "id":               "network",
-        "name":             "My network only",
-        "description":      "Content visible only for people in my network.",
+        "name":             _("My network only"),
+        "description":      _("Content visible only for people in my network."),
         can_list:           network,
         can_view:           network,
         can_edit:           system,
@@ -128,8 +130,8 @@ ephemeral_templates = PermissionTemplate((
     },
     {
         "id":               "members",
-        "name":             "Members only",
-        "description":      "Content visible only for community members.",
+        "name":             _("Members only"),
+        "description":      _("Content visible only for community members."),
         can_list:           network,
         can_view:           network,
         can_edit:           system,
@@ -138,8 +140,8 @@ ephemeral_templates = PermissionTemplate((
     },
     {
         "id":               "private",
-        "name":             "Private",
-        "description":      "Content visible only for you.",
+        "name":             _("Private"),
+        "description":      _("Content visible only for you."),
         can_list:           owner,
         can_view:           owner,
         can_edit:           owner,
@@ -154,7 +156,7 @@ account_templates = PermissionTemplate((
     {
         "id":               "public",
         "name":             "Public",
-        "description":      "Account visible to anyone who has access to twistranet.",
+        "description":      _("Account visible to anyone who has access to twistranet."),
         can_view:           public,
         can_list:           public,
         can_publish:        network,
@@ -163,8 +165,8 @@ account_templates = PermissionTemplate((
     },
     {
         "id":               "intranet",
-        "name":             "Intranet account",
-        "description":      "Account visible only to people logged-in twistranet.",
+        "name":             _("Intranet account"),
+        "description":      _("Account visible only to people logged-in twistranet."),
         can_view:           network,
         can_list:           network,
         can_publish:        network,
@@ -173,8 +175,8 @@ account_templates = PermissionTemplate((
     },
     {
         "id":               "private",
-        "name":             "Private",
-        "description":      "Restricted access to the account network only. This account can be searched, though.",
+        "name":             _("Private"),
+        "description":      _("Restricted access to the account network only. This account can be searched, though."),
         can_view:           network,
         can_list:           public,
         can_publish:        network,
@@ -196,8 +198,8 @@ account_templates = PermissionTemplate((
 community_templates = PermissionTemplate((
     {
         "id":               "workgroup",
-        "name":             "Workgroup", 
-        "description":      "Content is private to the community, membership must be approved by a member.",
+        "name":             _("Workgroup"), 
+        "description":      _("Content is private to the community, membership must be approved by a member."),
         # can_create:         (administrator, ),
         can_list:           public,
         can_view:           network,
@@ -211,7 +213,7 @@ community_templates = PermissionTemplate((
     {
         "id":               "blog",
         "name":             "Blog",
-        "description":      "Content is public and discussable, membership is handled by the community manager.",
+        "description":      _("Content is public and discussable, membership is handled by the community manager."),
         # can_create:         (administrator, ),
         can_list:           public,
         can_view:           public,
@@ -224,8 +226,8 @@ community_templates = PermissionTemplate((
     },
     {
         "id":               "interest",
-        "name":             "Open community",
-        "description":      "Content is public, membership is free.",
+        "name":             _("Open community"),
+        "description":      _("Content is public, membership is free."),
         # can_create:         public,
         can_list:           public,
         can_view:           public,
@@ -238,7 +240,7 @@ community_templates = PermissionTemplate((
     },
     {
         "id":               "private",
-        "name":             "Private", 
+        "name":             _("Private"), 
         "description":      """
                             A private community, visible only to its members but ruled like a workgroup otherwise.
                             """,
@@ -294,7 +296,7 @@ community_templates = PermissionTemplate((
 global_community_templates = PermissionTemplate((
     {
         "id":               "intranet",
-        "name":             "Intranet: Access restricted to logged-in users only.",
+        "name":             _("Intranet: Access restricted to logged-in users only."),
         "description":      """
                             Use this to have your twistranet site opened only to logged-in users.
                             Everybody is listed, some accounts can be private.
@@ -327,7 +329,7 @@ global_community_templates = PermissionTemplate((
     # },
     {
         "id":               "internet",
-        "name":             "Internet: Opened for non-logged users as well.",
+        "name":             _("Internet: Opened for non-logged users as well."),
         "description":      """
                             Want to open your community the the World? That's what this is for.
                             If you have an association, a (possibly open-source ;)) community project
@@ -353,7 +355,7 @@ menuitem_templates = PermissionTemplate((
     {
         "id":               "public",
         "name":             "Public",
-        "description":      "Content visible to people who can view this account.",
+        "description":      _("Content visible to people who can view this account."),
         can_list:           public,
         can_view:           public,
         can_edit:           manager,

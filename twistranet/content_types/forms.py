@@ -8,10 +8,17 @@ from twistranet.twistapp.forms import form_registry
 from twistranet.twistapp.forms.base_forms import BaseInlineForm, BaseRegularForm, BaseEmptyForm
 from twistranet.twistapp.forms.widgets import  PermissionsWidget
 
+from django.utils.translation import ugettext as _
+
 class StatusUpdateForm(BaseInlineForm):
     """
     The famous status update.
     """
+    
+    @classmethod
+    def form_name(cls):
+        return _("StatusUpdate")
+        
     class Meta(BaseInlineForm.Meta):
         from twistranet.content_types.models import StatusUpdate
         model = StatusUpdate
@@ -25,6 +32,11 @@ class InlineFileForm(BaseInlineForm):
     """
     Quick file upload form
     """
+    
+    @classmethod
+    def form_name(cls):
+        return _("File")
+    
     class Meta(BaseInlineForm.Meta):
         from twistranet.content_types.models import File
         model = File
@@ -50,7 +62,7 @@ class QuickDocumentForm(BaseRegularForm):
             'description':  widgets.Textarea(attrs = {'rows': 3, 'cols': 60}),
             'text':         TinyMCE(attrs = {'rows': 20, 'cols': 100}),
         }
-
+       
 class CommentForm(BaseEmptyForm):
     """
     A simple comment form
@@ -89,6 +101,9 @@ class FileForm(BaseRegularForm):
     """
     allow_creation = False
     allow_edition = True
+    
+    def getName(self):
+        return _("File")
 
     class Meta(BaseRegularForm.Meta):
         from twistranet.content_types.models import File

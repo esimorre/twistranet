@@ -85,7 +85,11 @@ class BaseForm(BaseEmptyForm):
     
     permissions = PermissionsFormField(choices = (), widget = PermissionsWidget())
     publisher_id = forms.IntegerField(required = False, widget = widgets.HiddenInput)
-
+    
+    @classmethod
+    def form_name(cls):
+        return cls.Meta.model.__name__
+    
     def getName(self):
         """
         Return a friendly name for this form, usually used as the tab label

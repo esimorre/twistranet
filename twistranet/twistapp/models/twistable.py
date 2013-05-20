@@ -27,6 +27,9 @@ from twistranet.twistapp.lib.slugify import slugify
 from twistranet.twistapp.signals import twistable_post_save
 from fields import ResourceField, PermissionField, TwistableSlugField
 
+from django.utils.translation import ugettext_lazy as _
+
+
 class TwistableManager(models.Manager):
     """
     It's the base of the security model!!
@@ -225,7 +228,7 @@ class Twistable(_AbstractTwistable):
         
     # Basic metadata shared by all Twist objects.
     # Title is mandatory!
-    title = models.CharField(max_length = 255, blank = True, default = '')
+    title = models.CharField(max_length = 255, blank = True, default = '', verbose_name=_('Title'))
     description = models.TextField(max_length = 1024, blank = True, default = '')
     created_at = models.DateTimeField(auto_now_add = True, null = True, db_index = False)
     modified_at = models.DateTimeField(auto_now = True, null = True, db_index = True)
@@ -237,8 +240,8 @@ class Twistable(_AbstractTwistable):
     # If you want to get the account picture, use the 'picture' attribute.
     default_picture_resource_slug = None
     # XXX TODO PJ : the widget params are never rendered
-    picture = ResourceField( media_type='image', null = True, blank = True, related_name = "picture_of")
-    tags = models.ManyToManyField("Tag", related_name = "tagged")
+    picture = ResourceField( media_type='image', null = True, blank = True, related_name = "picture_of", verbose_name=_('Picture'))
+    tags = models.ManyToManyField("Tag", related_name = "tagged", verbose_name=_('Tags'))
     
     # These are two security flags.
     #  The account this content is published for. 'NULL' means visible to AnonymousAccount.
