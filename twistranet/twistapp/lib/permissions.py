@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from roles import *
 
 from django.utils.translation import ugettext_lazy as _
@@ -103,6 +104,15 @@ content_templates = PermissionTemplate((
         can_view:           owner,
         can_edit:           owner,
         can_delete:         owner,
+    },
+    {
+        "id":               "confidential",
+        "name":             _("Confidential"),
+        "description":      "En test: visible par vous et le manager",
+        can_list:           manager,
+        can_view:           manager,
+        can_edit:           owner,
+        can_delete:         manager,
     },
 ))
 
@@ -223,6 +233,20 @@ community_templates = PermissionTemplate((
         can_publish:        public,
         can_join:           manager,
         can_leave:          manager,
+    },
+    {
+        "id":               "activity",
+        "name":             "Activite",
+        "description":      "Blog avec manager seul publicateur, adhesion libre.",
+        # can_create:         (administrator, ),
+        can_list:           public,
+        can_view:           public,
+        can_list_members:   public,
+        can_edit:           manager,
+        can_delete:         owner,
+        can_publish:        manager,
+        can_join:           public,
+        can_leave:          public,
     },
     {
         "id":               "interest",

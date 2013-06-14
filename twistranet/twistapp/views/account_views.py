@@ -433,10 +433,18 @@ class UserAccountInvite(UserAccountEdit):
     category = GLOBAL_ACTIONS
     name = "user_account_invite"
     
+
     def as_action(self):
         if not Account.objects.can_create:
             return None
-        return BaseView.as_action(self)
+        
+        #Check that I'm an admin
+        
+        if GlobalCommunity.objects.exists():
+            glob = GlobalCommunity.get()
+            if glob.can_edit:
+                return BaseView.as_action(self,)
+        return None
         
     def prepare_view(self):
         """

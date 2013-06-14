@@ -26,9 +26,9 @@ class ResourceWidget(forms.MultiWidget):
             base_url = base_url[:-1]
         return forms.Media(
             css = {
-                'all': ('%s/static/css/tn_resource_widget.css' % base_url, ),
+                'all': ('/static/css/tn_resource_widget.css',)
             },
-            js = ('%s/static/js/tn_resource_widget.js' % base_url, )
+            js = ('/static/js/tn_resource_widget.js',)
         )
     media = property(_media)
 
