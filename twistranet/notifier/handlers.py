@@ -213,6 +213,8 @@ class MailHandler(NotifierHandler):
         
             # Prepare messages
             msg = EmailMultiAlternatives(subject, text_content, from_email, [ to ], )
+            
+            
             if html_content:
                 if getattr(settings, 'SEND_EMAIL_IMAGES_AS_ATTACHMENTS', DEFAULT_SEND_EMAIL_IMAGES_AS_ATTACHMENTS):
                     # we replace img links by img Mime Images
