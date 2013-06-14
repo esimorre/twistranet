@@ -21,7 +21,7 @@ urlpatterns = patterns('',
     url(r'^account/(\d+)/network/$',                AsView(AccountNetworkView), name='account_network'),
     url(r'^account/(\d+)/edit$',                    AsView(UserAccountEdit), name = UserAccountEdit.name),
     url(r'^account/(\d+)/change_password$',         AsView(ChangePassword), name = ChangePassword.name),
-    url(r'^account/invite$',                        AsView(UserAccountInvite), name = UserAccountInvite.name),
+    url(r'^account/invite$',                        AsAdminView(UserAccountInvite), name = UserAccountInvite.name),
     url(r'^join/(\w+)/([\w\-@%\._]+)$',             AsPublicView(AccountJoin), name = AccountJoin.name),
     url(r'^account/(\d+)/delete$',                  AsView(AccountDelete), name = AccountDelete.name),
     url(r'^account/(\d+)/add_to_network/$',         AsView(AddToNetworkView), name = AddToNetworkView.name),
@@ -89,6 +89,7 @@ urlpatterns = patterns('',
     url(r'^menuitem/json/(\w+)/(\w+)/validate$',      AsAdminView(MenuItemValidate), name = MenuItemValidate.name),
     url(r'^accounts_import/$',                  AsAdminView(AccountsImport), name = AccountsImport.name, ),
 
+
     # Search engine
     (r'^search/',                               include('twistranet.search.urls')),
 
@@ -100,9 +101,9 @@ urlpatterns = patterns('',
 
     # Javascript dynamic stuff
     url(r'^tn_vars.js$',                        'twistranet.twistapp.views.js_vars', name = "twistranet_js_vars",),
-
    # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
+
 )
 
 
