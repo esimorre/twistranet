@@ -1,0 +1,149 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-05-10 23:50+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1)\n"
+
+#: .\local_settings.py:99
+msgid "French"
+msgstr ""
+
+#: .\local_settings.py:100
+msgid "German"
+msgstr ""
+
+#: .\local_settings.py:101
+msgid "English"
+msgstr ""
+
+#: .\local_settings.py:102
+msgid "Spanish"
+msgstr ""
+
+#: .\translations.py:4
+msgid "Picture"
+msgstr "Image"
+
+#: .\translations.py:5
+msgid "Title"
+msgstr "Titre"
+
+#: .\translations.py:6
+msgid "Tags"
+msgstr "Mots-clés"
+
+#: .\translations.py:8
+msgid "Keywords"
+msgstr "Mots-clés"
+
+#: .\translations.py:9
+msgid "Enter relevant keywords about your content."
+msgstr "Ajouter des mots-clés pertinent concernant le contenu."
+
+#: .\translations.py:10
+msgid "Book"
+msgstr "Livre"
+
+#: .\translations.py:12
+msgid "StatusUpdate"
+msgstr "Statut du jour"
+
+#: .\translations.py:13
+#, fuzzy
+msgid "File"
+msgstr "Fichier"
+
+#: .\translations.py:29
+msgid "Always public."
+msgstr "Toujours public."
+
+#: .\translations.py:42 .\translations.py:85 .\translations.py:328
+msgid "Content visible to people who can view this account."
+msgstr ""
+
+#: .\translations.py:50 .\translations.py:93
+msgid "My network only"
+msgstr "Mon réseau seulement"
+
+#: .\translations.py:51 .\translations.py:94
+msgid "Content visible only for people in my network."
+msgstr "Contenu visible seulement par les membres de mon réseau."
+
+#: .\translations.py:60 .\translations.py:103
+msgid "Members only"
+msgstr "Membres seulement"
+
+#: .\translations.py:61 .\translations.py:104
+msgid "Content visible only for community members."
+msgstr "Contenu visible seulement par les membres de la communauté."
+
+#: .\translations.py:70 .\translations.py:113 .\translations.py:148
+#: .\translations.py:213
+msgid "Private"
+msgstr "Privé"
+
+#: .\translations.py:71 .\translations.py:114
+msgid "Content visible only for you."
+msgstr "Contenu visible seulement par vous."
+
+#: .\translations.py:129
+msgid "Account visible to anyone who has access to twistranet."
+msgstr ""
+
+#: .\translations.py:138
+msgid "Intranet account"
+msgstr ""
+
+#: .\translations.py:139
+msgid "Account visible only to people logged-in twistranet."
+msgstr ""
+
+#: .\translations.py:149
+msgid ""
+"Restricted access to the account network only. This account can be searched, "
+"though."
+msgstr ""
+
+#: .\translations.py:171
+msgid "Workgroup"
+msgstr "Groupe de travail"
+
+#: .\translations.py:172
+msgid ""
+"Content is private to the community, membership must be approved by a member."
+msgstr ""
+
+#: .\translations.py:186
+msgid ""
+"Content is public and discussable, membership is handled by the community "
+"manager."
+msgstr ""
+
+#: .\translations.py:199
+msgid "Open community"
+msgstr "Accès libre"
+
+#: .\translations.py:200
+msgid "Content is public, membership is free."
+msgstr ""
+
+#: .\translations.py:269
+msgid "Intranet: Access restricted to logged-in users only."
+msgstr "Intranet: Accès restreint aux utilisateurs connectés."
+
+#: .\translations.py:302
+msgid "Internet: Opened for non-logged users as well."
+msgstr "Internet: accès libre."
