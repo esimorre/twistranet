@@ -80,6 +80,9 @@ class TwistableManager(models.Manager):
                     owner__id = __account__.id,
                     _p_can_list = roles.owner,
                 ) | Q(
+                    owner__id = __account__.id,
+                    _p_can_list = roles.manager,
+                ) | Q(
                     _access_network__targeted_network__target = __account__,
                     _p_can_list = roles.network,
                 ) | Q(
@@ -503,7 +506,7 @@ class Twistable(_AbstractTwistable):
             _p_can_list = max(self._p_can_list, self.publisher and self.publisher._p_can_view or roles.public)
         
         # If restricted to content owner, no access network mentionned here.
-        if _p_can_list in (roles.owner, ):
+        if _p_can_list in (roles.owner, roles.manager):
             self._access_network = None     # XXX We have to double check this, esp. on the GlobalCommunity object.
             
         # Network role: same as current network for an account, same as publisher's network for a content
