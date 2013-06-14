@@ -1,4 +1,3 @@
-{# {% extends "email/basemail.txt" %} #}
 {% load i18n %}
 {% with inviter.title as inviter_title %}
 Subject: {% blocktrans %}{{ inviter_title }} invites you to twistranet{% endblocktrans %}
@@ -6,7 +5,7 @@ Subject: {% blocktrans %}{{ inviter_title }} invites you to twistranet{% endbloc
 {% blocktrans %}Hi,{% endblocktrans %}
   
   {% blocktrans %}You just recieved a request from {{ inviter_title }} to join twistranet.{% endblocktrans %}
-  
+
 {% if message %}
   {% blocktrans %}Here's what {{ inviter_title }} tells you:{% endblocktrans %}
   
