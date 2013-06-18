@@ -29,9 +29,9 @@ class FormRegistryManager:
             self._form_registries[reg_name] = SimpleFormRegistryManager()
         self._form_registries[reg_name].register(form_class)
     
-    def get_form_registry(self, role=None):
+    def get_form_registry(self, name, role=None):
         if role:
-            return self._form_registries["%s:%s" % (role, self.name)]
-        return self._form_registries[self.name]
+            return self._form_registries["%s:%s" % (role, name)]
+        return self._form_registries[name]
 
 form_registry = FormRegistryManager()
