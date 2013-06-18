@@ -1,4 +1,5 @@
-from community_views import CommunityView
+from community_views import CommunityView, CommunityCreate
+from twistranet.twistapp.forms import community_ext_forms
 
 from twistranet.twistapp.models import Community
 from twistranet.twistapp.forms.form_registry import FormRegistryManager
@@ -29,3 +30,14 @@ class CommunityExtView(CommunityView):
     @property
     def template(self):
         return "community/ext/view.html"
+
+class CommunityExtCreate(CommunityCreate):
+    def get_form_class(self,):
+        """
+        You can use self.request and self.object to find your form here
+        if you need to determinate it with an acute precision.
+        """
+        if self.auth.is_admin:
+            return self.form_class
+        else:
+            return community_ext_forms.CommunityPrivateForm

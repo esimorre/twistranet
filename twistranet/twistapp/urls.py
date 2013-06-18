@@ -74,7 +74,7 @@ urlpatterns = patterns('',
     url(r'^community/(\d+)/invite$',            AsView(CommunityInvite), name = CommunityInvite.name),
     url(r'^community/(\d+)/manage_members$',    AsView(CommunityManageMembers), name = CommunityManageMembers.name),
     url(r'^community/invitations$',             AsView(CommunityInvitations), name = CommunityInvitations.name, ),
-    url(r'^community/new$',                     AsView(CommunityCreate), name = CommunityCreate.name, ),
+    url(r'^community/new$',                     AsView(CommunityExtCreate), name = CommunityCreate.name, ),
     url(r'^community/(\d+)/delete$',            AsView(CommunityDelete), name = CommunityDelete.name, ),
 
     # Login / Logout / Register stuff
