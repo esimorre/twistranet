@@ -1,3 +1,13 @@
+Fork
+====
+
+* a project template (fronly) for french sites
+
+* some customizations:
+  * communities: non managers can only create private communities
+  * content: Confidential role (private for owner and community manager)
+
+
 UNRELEASED
 ==========
 
