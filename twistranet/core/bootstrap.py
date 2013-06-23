@@ -138,6 +138,7 @@ def bootstrap():
             last_name = settings.TWISTRANET_DEFAULT_ADMIN_LASTNAME,
             email = settings.TWISTRANET_ADMIN_EMAIL,
             is_superuser = True,
+            is_active = True,
         )
         admin.set_password(admin_password)
         admin.save()
