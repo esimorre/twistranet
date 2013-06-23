@@ -225,7 +225,7 @@ _INSTALLED_APPS = (
     
     # 3rd party modules
     DEBUG and 'debug_toolbar' or None,
-    'piston',
+    #'piston',
     'tinymce',
     'sorl.thumbnail',
     'modeltranslation',

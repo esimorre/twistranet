@@ -58,9 +58,11 @@ EXTERNAL_LINKS_NEW_WIN = True
 
 # Normally, twistranet is hosted under the '/' directory of your server.
 # However you can change that by setting the following variables.
+# par exemple BASE_URL = '/rse/'
 BASE_URL = ''
 
-
+#ALLOWED_HOSTS = ['mysite.alwaysdata.net', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 #                                           #
 #             LDAP / AD settings            #
 #                                           #
