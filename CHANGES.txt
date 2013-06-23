@@ -1,8 +1,9 @@
-Fork
-====
+This fork
+=========
 
 * a project template (fronly) for french sites
-
+* tadm app: get admin little more useable
+* bug fixes (deployment with django 1.4.5, mysql, fastcgi)
 * some customizations:
   * communities: non managers can only create private communities
   * content: Confidential role (private for owner and community manager)
